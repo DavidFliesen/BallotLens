@@ -41,12 +41,13 @@ The plain-English explainer uses [WebLLM](https://github.com/mlc-ai/web-llm) to 
 |What is on the ballot                         |South Carolina Election Commission (scvotes.gov), Ballotpedia|
 |Party affiliation and biography               |Ballotpedia, Wikidata, candidate filings                     |
 |Congress voting records and party-unity scores|[VoteView](https://voteview.com)                             |
+|Roll-call attendance and member profiles      |[GovTrack](https://www.govtrack.us)                          |
 |State legislature voting records              |[OpenStates](https://openstates.org)                         |
 |Plain-English explanations                    |Llama 3.2 via WebLLM, in your browser                        |
 
 ## Running it
 
-It is a single file. Open `ballotlens-v004.html` in a browser, or drop it into a GitHub Pages repo and visit the published URL. To load the AI explainer, use desktop Chrome or Edge and tap **Load the in-browser AI**.
+It is a single file. Open `ballotlens-v005.html` in a browser, or drop it into a GitHub Pages repo and visit the published URL. To load the AI explainer, use desktop Chrome or Edge and tap **Load the in-browser AI**.
 
 ## Roadmap
 
@@ -65,7 +66,7 @@ The page includes Open Graph and Twitter Card tags so a link preview shows the b
 
 ## Files
 
-- `ballotlens-v004.html` — the app
+- `ballotlens-v005.html` — the app
 - `ballotlens-logo-v001.png` / `.svg` — horizontal logo lockup
 - `ballotlens-icon-v001.svg` — icon only
 - `ballotlens-icon-square-v001.png` — square icon for favicons and social cards
