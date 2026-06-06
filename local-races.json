@@ -1,0 +1,23 @@
+{
+  "_comment": "Local races by district, a starter set from the official June 9, 2026 primary filing (Greenville County). Add more counties/districts as objects in 'districts'. Each district: id (unique), label (shown in the dropdown), office, and candidates [{name, party}]. party is 'rep', 'dem', or omitted if unknown. Voters find their exact districts at scvotes.gov.",
+  "districts": [
+    { "id": "gv-sch5", "label": "SC House District 5 (Greenville Co.)", "office": "SC House District 5",
+      "candidates": [ {"name":"Neal Collins","party":"rep"}, {"name":"Brandy Tarleton","party":"rep"}, {"name":"David F. Jones","party":"dem"}, {"name":"Lee Meeder","party":"dem"} ] },
+    { "id": "gv-sch10", "label": "SC House District 10 (Greenville Co.)", "office": "SC House District 10",
+      "candidates": [ {"name":"Thomas Beach","party":"rep"}, {"name":"Steward Watson","party":"rep"}, {"name":"Craig Holcombe","party":"dem"}, {"name":"Thomas Stewart","party":"dem"} ] },
+    { "id": "gv-sch21", "label": "SC House District 21 (Greenville Co.)", "office": "SC House District 21",
+      "candidates": [ {"name":"Heather Currie","party":"rep"}, {"name":"Dianne Mitchell","party":"rep"} ] },
+    { "id": "gv-sch24", "label": "SC House District 24 (Greenville Co.)", "office": "SC House District 24",
+      "candidates": [ {"name":"Caroline Avinger","party":"dem"}, {"name":"Justin Sanders","party":"dem"} ] },
+    { "id": "gv-sch25", "label": "SC House District 25 (Greenville Co.)", "office": "SC House District 25",
+      "candidates": [ {"name":"Wendell Jones","party":"dem"}, {"name":"Derrick L. Quarles","party":"dem"} ] },
+    { "id": "gv-cc17", "label": "Greenville County Council District 17", "office": "Greenville County Council District 17",
+      "candidates": [ {"name":"Joe Dill","party":"rep"}, {"name":"John Ehlers","party":"rep"}, {"name":"Travis Forrester","party":"rep"}, {"name":"James Hoard","party":"rep"} ] },
+    { "id": "gv-cc23", "label": "Greenville County Council District 23", "office": "Greenville County Council District 23",
+      "candidates": [ {"name":"Angela L. Aiken","party":"dem"}, {"name":"Alan Mitchell","party":"dem"}, {"name":"David C. Mitchell","party":"dem"} ] },
+    { "id": "gv-cc26", "label": "Greenville County Council District 26", "office": "Greenville County Council District 26",
+      "candidates": [ {"name":"Rick Bradley","party":"rep"}, {"name":"Daniel Rumfelt","party":"rep"} ] },
+    { "id": "gv-cc28", "label": "Greenville County Council District 28", "office": "Greenville County Council District 28",
+      "candidates": [ {"name":"Allen Kellett","party":"rep"}, {"name":"Kyle Long","party":"rep"} ] }
+  ]
+}
