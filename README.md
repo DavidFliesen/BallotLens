@@ -26,13 +26,13 @@ It runs as a single self-contained HTML page, so it can be hosted for free on Gi
 BallotLens separates two things on purpose:
 
 - **The data layer** holds every fact about a real person. These come only from official and nonpartisan public sources, and each item links back to its source.
-- **The AI layer** is used only to rephrase that real, sourced information into plainer language. The model never supplies who is running, their party, or how they voted. It is told to use only the facts it is handed and to say so when it does not know.
+- **The explanations** (what each office does, each candidate’s background) are written in plain English directly from those sources. They are part of the page data, not generated on the fly.
 
-This matters because small AI models can make things up, and a made-up voting record attached to a real person would be harmful in an election. Keeping the model away from the facts is a deliberate design choice.
+This matters because a wrong fact attached to a real person would be harmful in an election. Everything shown is traceable to a linked source.
 
-## The in-browser AI
+## Explanations and voting records
 
-The plain-English explainer uses [WebLLM](https://github.com/mlc-ai/web-llm) to run Llama 3.2 entirely inside your browser. Nothing is sent to a server and no API key is required. It needs a WebGPU-capable browser (recent Chrome or Edge work best; the model downloads once on first use). If WebGPU is unavailable, the rest of the app still works; only the explainer is disabled.
+Each race opens with a short plain-English description of what that office does. Each candidate has a short qualifications-and-background blurb plus a voting-record panel. For members of Congress the panel shows real, cited roll-call attendance (from GovTrack) and a deep link to their party-line loyalty table on VoteView. A candidate’s record stays visible even when they are running for a different office (for example, Nancy Mace’s U.S. House record while she runs for governor). No API key, no signup, nothing sent to a server.
 
 ## Data sources
 
@@ -43,11 +43,11 @@ The plain-English explainer uses [WebLLM](https://github.com/mlc-ai/web-llm) to 
 |Congress voting records and party-unity scores|[VoteView](https://voteview.com)                             |
 |Roll-call attendance and member profiles      |[GovTrack](https://www.govtrack.us)                          |
 |State legislature voting records              |[OpenStates](https://openstates.org)                         |
-|Plain-English explanations                    |Llama 3.2 via WebLLM, in your browser                        |
+|Roll-call attendance and member profiles      |[GovTrack](https://www.govtrack.us)                          |
 
 ## Running it
 
-It is a single file. Open `ballotlens-v005.html` in a browser, or drop it into a GitHub Pages repo and visit the published URL. To load the AI explainer, use desktop Chrome or Edge and tap **Load the in-browser AI**.
+It is a single file. Open `ballotlens-v006.html` in a browser, or drop it into a GitHub Pages repo and visit the published URL.
 
 ## Roadmap
 
@@ -66,7 +66,7 @@ The page includes Open Graph and Twitter Card tags so a link preview shows the b
 
 ## Files
 
-- `ballotlens-v005.html` — the app
+- `ballotlens-v006.html` — the app
 - `ballotlens-logo-v001.png` / `.svg` — horizontal logo lockup
 - `ballotlens-icon-v001.svg` — icon only
 - `ballotlens-icon-square-v001.png` — square icon for favicons and social cards
