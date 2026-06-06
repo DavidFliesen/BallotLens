@@ -1,0 +1,15 @@
+{
+  "_comment": "Whole-career party-line loyalty. careerPct = percent of votes cast with the majority of the member's own party, across their whole time in office. Read each member's per-Congress loyalty from the VoteView table linked in 'source', then put the career average in careerPct (a number, e.g. 92.4). Set it once; historical loyalty does not change. When careerPct is a number, the app fills that member's loyalty bar automatically.",
+  "members": {
+    "Lindsey Graham": {
+      "careerPct": null,
+      "period": "career, U.S. House + Senate, 1995-present",
+      "source": "https://voteview.com/person/29566/lindsey-o-graham#loyaltyTable"
+    },
+    "Nancy Mace": {
+      "careerPct": null,
+      "period": "career, U.S. House, 2021-present",
+      "source": "https://voteview.com/person/22132/nancy-mace#loyaltyTable"
+    }
+  }
+}
