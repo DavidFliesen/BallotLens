@@ -3,7 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BallotLens v001</title>
+<title>BallotLens v004</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%230f1115'/%3E%3Cg transform='translate(28,28) scale(0.78)'%3E%3Cline x1='138' y1='138' x2='214' y2='214' stroke='%23d9a441' stroke-width='26' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='72' fill='%23d9a441'/%3E%3Ccircle cx='100' cy='100' r='56' fill='%2311151d'/%3E%3Cline x1='70' y1='80' x2='132' y2='80' stroke='%23e7e3d8' stroke-width='9' stroke-linecap='round'/%3E%3Cline x1='70' y1='96' x2='116' y2='96' stroke='%239aa0ad' stroke-width='9' stroke-linecap='round'/%3E%3Cpolyline points='72,116 88,132 130,90' fill='none' stroke='%23e9b85a' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://davidfliesen.github.io/BallotLens">
+<meta name="description" content="See who is on your ballot, each candidate's party and background, and how legislators have actually voted versus their own party. Nonpartisan, no signup.">
+<meta name="theme-color" content="#0f1115">
+<link rel="icon" type="image/png" sizes="512x512" href="https://davidfliesen.github.io/BallotLens/ballotlens-icon-square-v001.png">
+<link rel="apple-touch-icon" href="https://davidfliesen.github.io/BallotLens/ballotlens-apple-touch-icon-v001.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BallotLens">
+<meta property="og:title" content="BallotLens">
+<meta property="og:description" content="See who is on your ballot, where they stand, and how they have actually voted. A nonpartisan voter tool with real data from official sources and plain-English explanations from an in-browser AI.">
+<meta property="og:url" content="https://davidfliesen.github.io/BallotLens">
+<meta property="og:image" content="https://davidfliesen.github.io/BallotLens/ballotlens-social-v001.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BallotLens: see who is on your ballot and how they have actually voted">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BallotLens">
+<meta name="twitter:description" content="See who is on your ballot, where they stand, and how they have actually voted. Nonpartisan, no signup.">
+<meta name="twitter:image" content="https://davidfliesen.github.io/BallotLens/ballotlens-social-v001.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -90,9 +109,20 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
 
 <header>
   <div class="wrap">
-    <div class="brand">Ballot<b>Lens</b></div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <svg width="46" height="46" viewBox="0 0 256 256" aria-hidden="true" style="flex:none;">
+        <line x1="138" y1="138" x2="214" y2="214" stroke="#d9a441" stroke-width="26" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="72" fill="#d9a441"/>
+        <circle cx="100" cy="100" r="56" fill="#11151d"/>
+        <line x1="70" y1="80" x2="132" y2="80" stroke="#e7e3d8" stroke-width="9" stroke-linecap="round"/>
+        <line x1="70" y1="96" x2="116" y2="96" stroke="#9aa0ad" stroke-width="9" stroke-linecap="round"/>
+        <polyline points="72,116 88,132 130,90" fill="none" stroke="#e9b85a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand">Ballot<b>Lens</b></div>
+    </div>
     <div class="tagline">See who is on your ballot, where they stand, and how they have actually voted.</div>
     <span class="jx">South Carolina &middot; 2026 Cycle</span>
+    <div style="margin-top:8px;font-size:12px;"><a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener" style="color:#d9a441;">davidfliesen.github.io/BallotLens</a></div>
   </div>
 </header>
 
@@ -154,7 +184,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
   </div>
 
   <footer>
-    <div>BallotLens v001 &middot; a nonpartisan voter-education prototype. Open data sources:
+    <div>BallotLens v004 &middot; a nonpartisan voter-education prototype. Open data sources:
       <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>,
       <a href="https://ballotpedia.org" target="_blank" rel="noopener">Ballotpedia</a>,
       <a href="https://voteview.com" target="_blank" rel="noopener">VoteView</a>,
@@ -162,6 +192,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a>.
       In-browser AI by <a href="https://github.com/mlc-ai/web-llm" target="_blank" rel="noopener">WebLLM</a>.
     </div>
+    <div style="margin-top:8px;">Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
   </footer>
 
 </div>
@@ -235,6 +266,18 @@ var BALLOT_DATA = {
 // Illustrative-only sample values, used ONLY when the demo toggle is on.
 var SAMPLE_PCT = { "Lindsey Graham": 89, "Nancy Mace": 78, "Josh Kimbrell": 91, "Pamela Evette": 86 };
 
+// Earth-tone groupings: each race gets its own color so groups are visually
+// distinct. Tones are chosen to sit comfortably on the dark background.
+// accent = left border, bg = card background, head = office title color.
+var PALETTE = [
+  { accent: "#c77a52", bg: "#1d1814", head: "#e3a482" }, // terracotta
+  { accent: "#8f9a55", bg: "#181a13", head: "#c3cd88" }, // olive
+  { accent: "#a88d6a", bg: "#1a1813", head: "#d6bd99" }, // umber / taupe
+  { accent: "#7ba38c", bg: "#141a17", head: "#a9d2bf" }, // sage
+  { accent: "#b9705e", bg: "#1d1513", head: "#e0998a" }, // sienna
+  { accent: "#c6a14e", bg: "#1c1810", head: "#e3c884" }  // wheat / ochre
+];
+
 // ----- RENDER ---------------------------------------------------------------
 var sampleOn = false;
 
@@ -286,13 +329,15 @@ function renderBallot() {
   var html = "";
   for (var i = 0; i < BALLOT_DATA.races.length; i++) {
     var race = BALLOT_DATA.races[i];
+    var pal = PALETTE[i % PALETTE.length];
     var cands = "";
     if (race.candidates.length === 0) {
       cands = '<div class="meter-empty">Candidate lineup not yet loaded for this race. Add from scvotes.gov.</div>';
     } else {
       for (var j = 0; j < race.candidates.length; j++) cands += candidateHtml(race.candidates[j]);
     }
-    html += '<div class="race"><h3>' + race.office + '</h3>' +
+    html += '<div class="race" style="border-left:6px solid ' + pal.accent + ';background:' + pal.bg + ';">' +
+      '<h3 style="color:' + pal.head + ';">' + race.office + '</h3>' +
       '<div class="meta">' + race.type + '</div>' +
       '<div class="desc">' + race.desc + '</div>' +
       cands +
@@ -306,9 +351,14 @@ function renderBallot() {
 function renderCompare() {
   var rows = [];
   for (var i = 0; i < BALLOT_DATA.races.length; i++) {
+    var pal = PALETTE[i % PALETTE.length];
     for (var j = 0; j < BALLOT_DATA.races[i].candidates.length; j++) {
       var c = BALLOT_DATA.races[i].candidates[j];
-      if (c.record && c.record.has) rows.push(candidateHtml(c));
+      if (c.record && c.record.has) {
+        rows.push('<div class="race" style="border-left:6px solid ' + pal.accent + ';background:' + pal.bg + ';">' +
+          '<div class="meta" style="color:' + pal.head + ';">' + BALLOT_DATA.races[i].office + '</div>' +
+          candidateHtml(c) + '</div>');
+      }
     }
   }
   document.getElementById("compareList").innerHTML = rows.length ? rows.join("") :
