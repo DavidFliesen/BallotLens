@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="BallotLens icon">
+  <line x1="138" y1="138" x2="214" y2="214" stroke="#d9a441" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="100" cy="100" r="72" fill="#d9a441"/>
+  <circle cx="100" cy="100" r="56" fill="#11151d"/>
+  <line x1="70" y1="80" x2="132" y2="80" stroke="#e7e3d8" stroke-width="9" stroke-linecap="round"/>
+  <line x1="70" y1="96" x2="116" y2="96" stroke="#9aa0ad" stroke-width="9" stroke-linecap="round"/>
+  <polyline points="72,116 88,132 130,90" fill="none" stroke="#e9b85a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
