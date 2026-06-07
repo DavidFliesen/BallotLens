@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BallotLens v020</title>
+<title>BallotLens v022</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%230f1115'/%3E%3Cg transform='translate(28,28) scale(0.78)'%3E%3Cline x1='138' y1='138' x2='214' y2='214' stroke='%23d9a441' stroke-width='26' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='72' fill='%23d9a441'/%3E%3Ccircle cx='100' cy='100' r='56' fill='%2311151d'/%3E%3Cline x1='70' y1='80' x2='132' y2='80' stroke='%23e7e3d8' stroke-width='9' stroke-linecap='round'/%3E%3Cline x1='70' y1='96' x2='116' y2='96' stroke='%239aa0ad' stroke-width='9' stroke-linecap='round'/%3E%3Cpolyline points='72,116 88,132 130,90' fill='none' stroke='%23e9b85a' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="canonical" href="https://davidfliesen.github.io/BallotLens">
 <meta name="description" content="See who is on your ballot, each candidate's party and background, and how legislators have actually voted versus their own party. Nonpartisan, no signup.">
@@ -134,6 +134,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
   <div class="tabs" id="tabs">
     <div class="tab active" role="tab" tabindex="0" data-tab="ballot">My Ballot</div>
     <div class="tab" role="tab" tabindex="0" data-tab="sample">Sample Ballot</div>
+    <div class="tab" role="tab" tabindex="0" data-tab="advisory">Advisory Questions</div>
     <div class="tab" role="tab" tabindex="0" data-tab="about">About the Data</div>
   </div>
 
@@ -151,6 +152,40 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
     </div>
     <p class="lead">The statewide and U.S. Senate races below are on every South Carolina ballot. Local races (state House, county council, school board) depend on your exact address, so use the official lookup above for your complete ballot.</p>
     <div id="sampleList"></div>
+  </div>
+
+  <!-- ADVISORY QUESTIONS TAB -->
+  <div id="advisory" class="hidden">
+    <h2 class="sec">Advisory questions</h2>
+    <p class="lead">Two non-binding advisory questions appear on the South Carolina Republican primary ballot on June 9, 2026. These results do not change any law or rule. They let the Republican Party gauge where its primary voters stand on two policy directions. Democrats and unaffiliated voters casting a Democratic primary ballot will not see these questions.</p>
+
+    <div class="race" style="border-left:6px solid #d9a441;background:#1a1e28;">
+      <h3 style="color:#d9a441;">Question 1 &mdash; Party Registration</h3>
+      <div class="meta">Non-binding advisory question &middot; Republican primary ballot only</div>
+      <div class="about-office" style="border-left-color:#d9a441;">
+        <b>What this question asks.</b> Should people have the right to formally register with a political party of their choice when they register to vote?
+        <div style="margin-top:10px;display:flex;gap:12px;">
+          <span style="background:#2d3a2d;color:#7fb98a;padding:6px 18px;border-radius:6px;font-weight:700;font-size:14px;">YES</span>
+          <span style="background:#2d2020;color:#c17878;padding:6px 18px;border-radius:6px;font-weight:700;font-size:14px;">NO</span>
+        </div>
+      </div>
+      <p class="cand-summary">South Carolina currently uses an open primary system: registered voters choose which party&rsquo;s primary to participate in on Election Day, without declaring a party affiliation when they register. A YES result would signal support for moving to formal party registration &mdash; voters would declare a party at registration, and the state could then require voters to be registered with a party before voting in that party&rsquo;s primary (a &ldquo;closed primary&rdquo; system used by many other states). A NO result signals support for keeping the current open system.</p>
+    </div>
+
+    <div class="race" style="border-left:6px solid #7eacc4;background:#181e27;margin-top:12px;">
+      <h3 style="color:#7eacc4;">Question 2 &mdash; Partisan School Board Elections</h3>
+      <div class="meta">Non-binding advisory question &middot; Republican primary ballot only</div>
+      <div class="about-office" style="border-left-color:#7eacc4;">
+        <b>What this question asks.</b> Should candidates for local school boards be able to run as a candidate of the political party of their choice, just like candidates for other elected offices?
+        <div style="margin-top:10px;display:flex;gap:12px;">
+          <span style="background:#2d3a2d;color:#7fb98a;padding:6px 18px;border-radius:6px;font-weight:700;font-size:14px;">YES</span>
+          <span style="background:#2d2020;color:#c17878;padding:6px 18px;border-radius:6px;font-weight:700;font-size:14px;">NO</span>
+        </div>
+      </div>
+      <p class="cand-summary">South Carolina school board races are currently nonpartisan &mdash; candidates appear on the ballot without a party label. A YES result would signal support for allowing school board candidates to run under a party label, the same way candidates for the state House, county council, and other offices do. Supporters argue party labels help voters quickly understand a candidate&rsquo;s values and priorities. Opponents argue that education governance should be kept separate from partisan politics. A NO result signals support for keeping school board races nonpartisan.</p>
+    </div>
+
+    <p class="srcnote" style="margin-top:14px;">Source: South Carolina Republican Party advisory ballot questions, June 9, 2026 primary. Advisory results are not legally binding and do not amend any state law.</p>
   </div>
 
   <!-- ABOUT TAB -->
@@ -185,7 +220,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <a href="https://www.govtrack.us" target="_blank" rel="noopener">GovTrack</a>,
       <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
     </div>
-    <div style="margin-top:8px;">BallotLens v020 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
+    <div style="margin-top:8px;">BallotLens v022 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
   </footer>
 
 </div>
@@ -397,6 +432,99 @@ var BALLOT_DATA = {
         { name: "DeShawn Blanding", party: "dem",
           summary: "A farmer, agricultural co-op president, and former congressional aide.",
           sources: [{ label: "Campaign site", url: "http://www.blandingforsc.com" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 1", type: "Open seat (Mace running for Governor)",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers coastal South Carolina: Charleston, Beaufort, Hilton Head, Bluffton, and parts of Dorchester County. Nancy Mace is vacating this seat to run for governor. Eleven Republicans and seven Democrats are competing in their respective primaries.",
+      candidates: [
+        { name: "Dan Brown", party: "rep", summary: "An auto salesman and former congressional aide.", sources: [{ label: "Campaign site", url: "https://www.votedanbrown.com" }] },
+        { name: "Jay Byars", party: "rep", summary: "A Dorchester County councilman, businessman, and former teacher.", sources: [{ label: "Campaign site", url: "https://votejaybyars.com/" }] },
+        { name: "Logan Cunningham", party: "rep", summary: "A Beaufort County councilman, former teacher, and Republican activist.", sources: [{ label: "Campaign site", url: "https://www.logancunningham.com" }] },
+        { name: "Tyler Dykes", party: "rep", summary: "A Marine Corps veteran who received a presidential pardon related to the January 6, 2021 Capitol riot.", sources: [{ label: "Campaign site", url: "https://www.dykesforcongress.com" }] },
+        { name: "Jenny Honeycutt", party: "rep", summary: "A Charleston County councilwoman and attorney.", sources: [{ label: "Campaign site", url: "http://www.jennycostahoneycutt.com" }] },
+        { name: "Kendal Ludden", party: "rep", summary: "An accountant and attorney who ran for the state Senate in 2024.", sources: [{ label: "Campaign site", url: "https://ludden4liberty.org" }] },
+        { name: "Sam McCown", party: "rep", summary: "A physician and mechanical engineer.", sources: [{ label: "Campaign site", url: "https://sammccown.com" }] },
+        { name: "Alex Pelbath", party: "rep", summary: "A retired Air Force lieutenant colonel and Afghan War veteran.", sources: [{ label: "Campaign site", url: "https://pelbathforcongress.com" }] },
+        { name: "Cindy Riley", party: "rep", summary: "A nurse practitioner.", sources: [{ label: "Campaign site", url: "https://cindywrileyforcongress.com" }] },
+        { name: "Mark Sanford", party: "rep", wiki: "Mark Sanford", summary: "Former South Carolina governor (2003-2011) and U.S. representative (2013-2019); withdrew his candidacy but his name remains on the primary ballot.", sources: [{ label: "Ballotpedia", url: "https://ballotpedia.org/Mark_Sanford" }] },
+        { name: "Mark Smith", party: "rep", summary: "A state representative and funeral home owner.", sources: [{ label: "Campaign site", url: "https://votemarksmith.com" }] },
+        { name: "Francina Dantzler", party: "dem", summary: "A school administrator and educator.", sources: [{ label: "Campaign page", url: "https://www.facebook.com/profile.php?id=61575423867613" }] },
+        { name: "Mac Deford", party: "dem", summary: "An attorney, Coast Guard veteran, and 2024 congressional candidate.", sources: [{ label: "Campaign site", url: "https://www.macdeford.org" }] },
+        { name: "Max Diaz", party: "dem", summary: "An aircraft mechanic.", sources: [{ label: "Campaign site", url: "https://www.maxdiazforcongress.com" }] },
+        { name: "Ben Frasier", party: "dem", summary: "A businessman, former congressional aide, and frequent Democratic candidate.", sources: [{ label: "Ballotpedia", url: "https://ballotpedia.org/Ben_Frasier" }] },
+        { name: "Matt Fulmer", party: "dem", summary: "Running in the Democratic primary for this seat.", sources: [{ label: "Campaign site", url: "https://www.fulmerforcongress.com" }] },
+        { name: "Nancy Lacore", party: "dem", summary: "A retired Navy vice admiral and Afghan War veteran.", sources: [{ label: "Campaign site", url: "https://www.nancylacore.com/" }] },
+        { name: "Mayra Rivera-Vazquez", party: "dem", summary: "Former vice chair of the South Carolina Democratic Party and a legal assistant.", sources: [{ label: "Campaign site", url: "https://www.mayra4congress.com" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 2", type: "Incumbent seeking re-election",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers the Midlands: the Columbia suburbs, Aiken, Lexington County, and the Augusta, Georgia metro area border. Incumbent Joe Wilson has held this seat since 2001.",
+      candidates: [
+        { name: "Joe Wilson", party: "rep", incumbent: true, wiki: "Joe Wilson (American politician)", summary: "Incumbent congressman since 2001, a lawyer and Army National Guard veteran widely known for his 2009 State of the Union outburst. He has a lengthy congressional voting record.", sources: [{ label: "Campaign site", url: "https://joemeansjobs.com" }] },
+        { name: "Sam Gibbons", party: "rep", summary: "A teacher and Afghan War veteran.", sources: [{ label: "Campaign site", url: "https://sam4sc.com" }] },
+        { name: "Hamp Redmond", party: "rep", summary: "A building contractor who also ran in 2024.", sources: [{ label: "Campaign site", url: "https://www.hampredmond.com" }] },
+        { name: "Zyon Khalifa", party: "dem", summary: "A law student and Air Force reservist.", sources: [{ label: "Campaign site", url: "https://www.khalifaforcongress.com" }] },
+        { name: "Roger Pruitt", party: "dem", summary: "An attorney and Air Force veteran.", sources: [{ label: "Campaign site", url: "https://www.pruitt4congress.com" }] },
+        { name: "David Robinson", party: "dem", summary: "A businessman and Army veteran.", sources: [{ label: "Campaign site", url: "https://www.davidrobinsonforcongress.com" }] },
+        { name: "Daniel Shrief", party: "dem", summary: "An insurance agent who also ran in 2024.", sources: [{ label: "Campaign page", url: "https://www.facebook.com/daniel.shrief.2025/" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 3", type: "Incumbent seeking re-election",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers the northwestern upstate: Anderson, Greenwood, and Laurens counties. Republican Sheri Biggs is the uncontested incumbent; the Democratic primary determines her November opponent.",
+      candidates: [
+        { name: "Sheri Biggs", party: "rep", incumbent: true, summary: "Incumbent congresswoman since 2023, a veterinarian. Uncontested in the Republican primary.", sources: [{ label: "Campaign site", url: "https://www.sheribiggs.com/" }] },
+        { name: "Eunice Lehmacher", party: "dem", summary: "A social worker, former teacher, and 2024 state House nominee.", sources: [{ label: "Campaign site", url: "https://www.euniceforsc.com" }] },
+        { name: "Ernest Mackins", party: "dem", summary: "An educator, pastor, and Army veteran.", sources: [{ label: "Campaign site", url: "https://www.mackinsenterprises.com" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 4", type: "Incumbent seeking re-election",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers the Greenville-Spartanburg metro. Republican William Timmons faces two primary challengers; Democrat Courtney McClain is uncontested in her primary.",
+      candidates: [
+        { name: "William Timmons", party: "rep", incumbent: true, summary: "Incumbent congressman since 2019, a lawyer. He faces a Republican primary before the general election.", sources: [{ label: "Campaign site", url: "https://votetimmons.com" }] },
+        { name: "David Atchley", party: "rep", summary: "An economic development consulting firm owner.", sources: [{ label: "Campaign site", url: "https://www.davidatchleyforcongress.com" }] },
+        { name: "Robert E. Lee", party: "rep", summary: "A mechanical engineer.", sources: [{ label: "Campaign site", url: "https://www.roberteleeforcongress.com" }] },
+        { name: "Courtney McClain", party: "dem", summary: "A political organizer, lobbyist, and civil rights activist. Uncontested in the Democratic primary.", sources: [{ label: "Campaign site", url: "https://www.mcclainforsc.com/" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 5", type: "Open seat (Norman running for Governor)",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers the upper Midlands and parts of the Upstate: Rock Hill, Lancaster, and York County. Ralph Norman is vacating this seat to run for governor. Republican Wes Climer is uncontested; Democrats hold a primary.",
+      candidates: [
+        { name: "Wes Climer", party: "rep", summary: "A state senator and financial planner. Uncontested in the Republican primary.", sources: [{ label: "Campaign site", url: "https://wesclimer.com" }] },
+        { name: "Andrew Clough", party: "dem", summary: "An airline worker.", sources: [{ label: "Campaign site", url: "https://www.cloughforsc5.com" }] },
+        { name: "Mallory Dittmer", party: "dem", summary: "A marketing consultant.", sources: [{ label: "Campaign site", url: "https://www.dittmerforcongress.com" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 6", type: "Incumbent seeking re-election",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "A majority-minority district covering parts of Columbia, Sumter, Orangeburg, Florence, and surrounding rural counties. Democrat Jim Clyburn has held this seat since 1993 and faces a primary challenger; two Republicans compete in their primary.",
+      candidates: [
+        { name: "Jim Clyburn", party: "dem", incumbent: true, wiki: "Jim Clyburn", summary: "Congressman since 1993 and a longtime House Democratic leader, serving as Majority Whip and Majority Leader. A prominent figure in the 2020 Democratic presidential primary. He has a lengthy congressional voting record.", sources: [{ label: "Campaign site", url: "https://clyburnforcongress.com" }] },
+        { name: "Frederick Goodwin", party: "dem", summary: "A 2025 town council candidate running in the Democratic primary.", sources: [{ label: "Ballotpedia", url: "https://ballotpedia.org/Frederick_Goodwin" }] },
+        { name: "John Peterson", party: "rep", summary: "A hotel banquet supervisor and Republican activist.", sources: [{ label: "Campaign site", url: "https://www.johnpeterson.org" }] },
+        { name: "Maurice Washington", party: "rep", summary: "A former Charleston city councilman and former state cabinet member.", sources: [{ label: "Campaign site", url: "https://washingtonforcongress.com" }] }
+      ]
+    },
+    {
+      office: "U.S. House — District 7", type: "Incumbent seeking re-election",
+      about: "A U.S. Representative votes on federal laws and the federal budget, originates revenue legislation (exclusive to the House), oversees federal agencies, and serves the interests of their congressional district. Two-year terms; all 435 seats are up every election cycle.",
+      desc: "Covers the Grand Strand and Pee Dee region: Myrtle Beach, Horry County, Conway, and the Pee Dee area. Republican Russell Fry faces two primary challengers; Democrats hold a primary.",
+      candidates: [
+        { name: "Russell Fry", party: "rep", incumbent: true, summary: "Incumbent congressman since 2023, a lawyer and former state representative. He faces a Republican primary.", sources: [{ label: "Campaign site", url: "https://russellfrysc.com" }] },
+        { name: "Branden Brown", party: "rep", summary: "A podcast host, travel agent, former firefighter, and Marine Corps veteran.", sources: [{ label: "Ballotpedia", url: "https://ballotpedia.org/Branden_Brown" }] },
+        { name: "Adam Moye", party: "rep", summary: "Running in the Republican primary for this seat.", sources: [{ label: "Campaign page", url: "https://www.facebook.com/p/Adam-Moyeforcongress-61585942471720/" }] },
+        { name: "Kory Haskins", party: "dem", summary: "A manager and 2024 state House nominee.", sources: [{ label: "Campaign page", url: "https://www.facebook.com/p/Kory-Haskins-for-South-Carolina-61561700523967/" }] },
+        { name: "John Vincent", party: "dem", summary: "A retired Navy veteran.", sources: [{ label: "Campaign site", url: "https://www.vincent4congress.org" }] }
       ]
     }
   ]
@@ -658,7 +786,7 @@ function activateTab(el) {
   }
   el.classList.add("active");
   el.setAttribute("aria-selected", "true");
-  ["ballot", "sample", "about"].forEach(function (id) {
+  ["ballot", "sample", "advisory", "about"].forEach(function (id) {
     document.getElementById(id).classList.add("hidden");
   });
   document.getElementById(name).classList.remove("hidden");
