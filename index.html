@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BallotLens v016</title>
+<title>BallotLens v020</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%230f1115'/%3E%3Cg transform='translate(28,28) scale(0.78)'%3E%3Cline x1='138' y1='138' x2='214' y2='214' stroke='%23d9a441' stroke-width='26' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='72' fill='%23d9a441'/%3E%3Ccircle cx='100' cy='100' r='56' fill='%2311151d'/%3E%3Cline x1='70' y1='80' x2='132' y2='80' stroke='%23e7e3d8' stroke-width='9' stroke-linecap='round'/%3E%3Cline x1='70' y1='96' x2='116' y2='96' stroke='%239aa0ad' stroke-width='9' stroke-linecap='round'/%3E%3Cpolyline points='72,116 88,132 130,90' fill='none' stroke='%23e9b85a' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="canonical" href="https://davidfliesen.github.io/BallotLens">
 <meta name="description" content="See who is on your ballot, each candidate's party and background, and how legislators have actually voted versus their own party. Nonpartisan, no signup.">
@@ -133,7 +133,6 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
 
   <div class="tabs" id="tabs">
     <div class="tab active" role="tab" tabindex="0" data-tab="ballot">My Ballot</div>
-    <div class="tab" role="tab" tabindex="0" data-tab="compare">Party-Line Voting</div>
     <div class="tab" role="tab" tabindex="0" data-tab="sample">Sample Ballot</div>
     <div class="tab" role="tab" tabindex="0" data-tab="about">About the Data</div>
   </div>
@@ -144,27 +143,13 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
   </div>
 
   <!-- COMPARE TAB -->
-  <div id="compare" class="hidden">
-    <h2 class="sec">Party-Line Voting, explained</h2>
-    <p class="lead">A party-line score is the share of recorded votes where a legislator voted the same way as the majority of their own party. Political scientists call it a party-unity score. A high number means they vote with their party most of the time; a lower number means they cross the aisle more often.</p>
-    <p class="lead">Crossing the aisle is not automatically good or bad. It is just information. BallotLens shows the same measure for every party, so a Republican who often votes with Democrats and a Democrat who often votes with Republicans are shown the exact same way. Colloquial nicknames like RINO or DINO refer loosely to this idea, but the number itself is what is verifiable.</p>
-    <p class="lead">Only people who currently hold or have held a legislative office have a roll-call record. Candidates for executive offices (governor, attorney general) or first-time candidates will not have one. Records for Congress come from VoteView and GovTrack; state-legislature records are linked from Ballotpedia.</p>
-    <div id="compareList"></div>
-  </div>
-
   <!-- SAMPLE BALLOT TAB -->
   <div id="sample" class="hidden">
     <h2 class="sec">Your sample ballot</h2>
-    <p class="lead">Statewide and federal races are on every South Carolina ballot and are listed below. Local races (state House, county council, school board) depend on your exact address, so the only complete, authoritative list is your official sample ballot.</p>
     <div class="about-office" style="border-left-color:#d9a441;">
-      <b>Find your exact ballot.</b> South Carolina's official voter lookup shows every race and candidate for your specific address &mdash; statewide, federal, and all local races. <a href="https://scvotes.gov" target="_blank" rel="noopener">Look up your official sample ballot at scvotes.gov &rarr;</a>
+      <b>See your official sample ballot.</b> South Carolina's voter portal shows every race and candidate for your exact address &mdash; statewide, federal, and every local race. <a href="https://vrems.scvotes.sc.gov/Voter/Login?PageMode=Sampleballot" target="_blank" rel="noopener">Open your official sample ballot &rarr;</a>
     </div>
-    <p class="lead">The picker below previews the local races verified so far (currently Greenville County) and grows as more counties are confirmed. It is a convenience preview, not a substitute for the official lookup above.</p>
-    <label for="districtSelect" style="font-size:13px;color:#b9bdc7;">Preview a district</label>
-    <select id="districtSelect" style="width:100%;margin:6px 0 4px;padding:10px;background:#0d1016;border:1px solid #353c49;border-radius:8px;color:#e7e3d8;font-family:inherit;font-size:14px;">
-      <option value="">No district selected (statewide + federal only)</option>
-    </select>
-    <div class="srcnote" id="localNote"></div>
+    <p class="lead">The statewide and U.S. Senate races below are on every South Carolina ballot. Local races (state House, county council, school board) depend on your exact address, so use the official lookup above for your complete ballot.</p>
     <div id="sampleList"></div>
   </div>
 
@@ -183,14 +168,16 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <li><b>Office and candidate explanations:</b> written in plain English directly from the sources above.</li>
     </ul>
     <p class="lead" style="margin-top:14px;">The data shipped here is a starter set for the 2026 South Carolina races and is meant to be expanded from the sources above.</p>
+    <h2 class="sec" style="margin-top:18px;">Party-line voting, explained</h2>
+    <p class="lead">A party-line score is the share of recorded votes where a legislator voted the same way as the majority of their own party (political scientists call it a party-unity score). A high number means they vote with their party most of the time; a lower number means they cross the aisle more often.</p>
+    <p class="lead">Crossing the aisle is not automatically good or bad. It is just information. BallotLens shows the same measure for every party, so a Republican who often votes with Democrats and a Democrat who often votes with Republicans are shown the exact same way. Only people who hold or have held a legislative office have a roll-call record; candidates for executive offices or first-time candidates will not have one. Records for Congress come from VoteView and GovTrack; state-legislature records are linked from Ballotpedia.</p>
     <h2 class="sec" style="margin-top:18px;">Disclaimer</h2>
     <p class="lead">BallotLens is an independent, nonpartisan, educational project. It is <b>not affiliated with, authorized by, or endorsed by</b> any candidate, campaign, political party, or election official or agency. Information is compiled from third-party public sources and may contain errors, omissions, or out-of-date entries. It is provided <b>"as is," without warranties of any kind</b>, express or implied, including accuracy, completeness, or fitness for a particular purpose. Nothing here is legal, voting, or professional advice. Always confirm details with official sources such as <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a> before relying on them or casting a vote. Characterizations such as party-line voting are derived from the cited public records. Use of this site is at your own risk, and the creator is not liable for decisions made based on it.</p>
-    <p class="lead">Spotted an error? Corrections are welcome and will be addressed promptly &mdash; contact <a href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a>.</p>
     <p class="srcnote">Data as of June 2026 (candidate filing closed March 31, 2026). South Carolina primary: June 9, 2026.</p>
   </div>
 
   <footer>
-    <div><b style="color:#9aa0ad;">Disclaimer:</b> BallotLens is an independent, nonpartisan educational project &mdash; not affiliated with or endorsed by any candidate, party, or election authority. Information comes from third-party public sources, may contain errors, and is provided "as is" with no warranty. It is not legal or voting advice; verify with official sources before voting. Full disclaimer and corrections on the <i>About the Data</i> tab.</div>
+    <div><b style="color:#9aa0ad;">Disclaimer:</b> BallotLens is an independent, nonpartisan educational project &mdash; not affiliated with or endorsed by any candidate, party, or election authority. Information comes from third-party public sources, may contain errors, and is provided "as is" with no warranty. It is not legal or voting advice; verify with official sources before voting. Full disclaimer on the <i>About the Data</i> tab.</div>
     <div style="margin-top:8px;">Sources:
       <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>,
       <a href="https://ballotpedia.org" target="_blank" rel="noopener">Ballotpedia</a>,
@@ -198,7 +185,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <a href="https://www.govtrack.us" target="_blank" rel="noopener">GovTrack</a>,
       <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
     </div>
-    <div style="margin-top:8px;">BallotLens v016 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
+    <div style="margin-top:8px;">BallotLens v020 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
   </footer>
 
 </div>
@@ -217,14 +204,18 @@ var BALLOT_DATA = {
     {
       office: "Governor", type: "Open seat (incumbent term-limited)",
       about: "The governor is South Carolina's chief executive: signs or vetoes bills, proposes the state budget, leads state agencies, makes many appointments, commands the state National Guard, and responds to emergencies. Four-year term, two-term limit.",
-      desc: "Incumbent Republican Henry McMaster is term-limited. A crowded Republican primary and a Democratic primary will narrow the field before the November 3 general election.",
+      desc: "Incumbent Republican Henry McMaster is term-limited. Seven Republicans and three Democrats appear on their June 9 primary ballots.",
       candidates: [
-        { name: "Jacqueline Hicks DuBose", party: "rep" },
+        { name: "Jacqueline Hicks DuBose", party: "rep",
+          summary: "A Hartsville cleaning-business owner who also drives a school bus, and the last Republican to file. The state Republican Party decertified her in May 2026 over an unpaid filing fee, so her name remains on the ballot but she cannot become the nominee.",
+          sources: [{ label: "SC Daily Gazette", url: "https://scdailygazette.com/2026/05/11/longshot-candidate-for-sc-governor-disqualified-for-not-paying-filing-fee/" }] },
         { name: "Pamela Evette", party: "rep", wiki: "Pamela Evette",
-          summary: "Lieutenant governor since 2019, elected on the ticket with Henry McMaster. Founded and ran a payroll and accounting company. The lieutenant governor's office does not carry a legislative voting record." },
+          summary: "Lieutenant governor since 2019, elected on the ticket with Gov. McMaster. A businesswoman and accountant who founded a payroll and HR firm. The lieutenant governor's office does not carry a legislative voting record.",
+          sources: [{ label: "Campaign site", url: "https://pamelaevette.com/" }] },
         { name: "Joshua Kimbrell", party: "rep", wiki: "Josh Kimbrell",
-          summary: "State senator for the 11th district (Spartanburg) since 2020, so he has a state-legislature voting record.",
-          record: { has: true, level: "SC Senate", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Josh_Kimbrell" } },
+          summary: "State senator for the 11th district (Spartanburg) since 2020, so he has a state-legislature voting record. He suspended his campaign for governor, but his name remains on the primary ballot.",
+          record: { has: true, level: "SC Senate", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Josh_Kimbrell" },
+          sources: [{ label: "Campaign site", url: "http://votejoshkimbrell.com" }] },
         { name: "Nancy Mace", party: "rep", photo: "https://voteview.com/static/img/bios/022132.jpg", wiki: "Nancy Mace",
           summary: "U.S. Representative for the 1st district (Charleston coast) since 2021, after the state House (2018-2020). First woman to graduate from The Citadel's Corps of Cadets. She is leaving her House seat for this race, but her congressional record still shows how she votes.",
           record: { has: true, level: "U.S. House", loyaltyCareerPct: null,
@@ -236,131 +227,176 @@ var BALLOT_DATA = {
                     ],
                     participation: { castPct: 95.2, missedPct: 4.8, period: "2021-2026" },
                     govtrackUrl: "https://www.govtrack.us/congress/members/nancy_mace/456843",
-                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/22132/nancy-mace#loyaltyTable" } },
+                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/22132/nancy-mace#loyaltyTable" },
+          sources: [{ label: "Campaign site", url: "https://nancymace.org" }] },
         { name: "Ralph W. Norman", party: "rep", photo: "https://voteview.com/static/img/bios/021753.jpg", wiki: "Ralph Norman",
           summary: "U.S. Representative for the 5th district since 2017, after a decade in the state House. A real estate developer and House Freedom Caucus member; GovTrack has ranked him among the most conservative members of the U.S. House.",
           record: { has: true, level: "U.S. House", loyaltyCareerPct: null,
                     loyaltyText: "A Freedom Caucus member ranked by GovTrack among the most conservative House members. He votes with his party nearly all the time.",
                     participation: { castPct: 96.2, missedPct: 3.8, period: "2017-2026" },
                     govtrackUrl: "https://www.govtrack.us/congress/members/ralph_norman/412738",
-                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/21753/ralph-norman#loyaltyTable" } },
+                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/21753/ralph-norman#loyaltyTable" },
+          sources: [{ label: "Campaign site", url: "https://ralphnormanforgovernor.com" }] },
         { name: "Rom Reddy", party: "rep",
-          summary: "A businessman and political newcomer running in the Republican primary for governor." },
+          summary: "A Lowcountry businessman and chemical engineer making his first run for office.",
+          sources: [{ label: "Campaign site", url: "https://www.reddyforgovernor.com" }] },
         { name: "Alan Wilson", party: "rep", wiki: "Alan Wilson (politician)",
-          summary: "South Carolina's attorney general since 2011 and an Army National Guard veteran. He is leaving that office to run for governor. The attorney general is an executive role and does not carry a legislative voting record." },
+          summary: "South Carolina's attorney general since 2011 and an Iraq War veteran. He is leaving that office to run for governor. The attorney general is an executive role and does not carry a legislative voting record.",
+          sources: [{ label: "Campaign site", url: "https://wilsonforsc.com" }] },
         { name: "Jermaine Johnson", party: "dem", wiki: "Jermaine Johnson (politician)",
-          summary: "A South Carolina state representative running in the Democratic primary for governor, so he has a state-legislature voting record.",
-          record: { has: true, level: "SC House", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Jermaine_Johnson_(South_Carolina)" } },
+          summary: "A state representative and nonprofit founder and CEO, so he has a state-legislature voting record.",
+          record: { has: true, level: "SC House", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Jermaine_Johnson_(South_Carolina)" },
+          sources: [{ label: "Campaign site", url: "https://johnsonforsc.com" }] },
         { name: "Mullins McLeod", party: "dem",
-          summary: "An attorney running in the Democratic primary for governor." },
+          summary: "A trial attorney who previously ran for governor in 2010.",
+          sources: [{ label: "Campaign site", url: "https://mcleod-lawgroup.com/attorneys/w-mullins-mcleod-jr/" }] },
         { name: "Billy Webster", party: "dem",
-          summary: "A businessman running in the Democratic primary for governor." },
-        { name: "Michael A. Addison", party: "ind", partyLabel: "United Citizens" },
-        { name: "Walid N. Hakim", party: "ind", partyLabel: "Green" },
-        { name: "Gary M. Votour", party: "ind", partyLabel: "Workers" }
+          summary: "A businessman and former aide in the Clinton White House.",
+          sources: [{ label: "Campaign site", url: "https://websterforsc.com" }] }
       ]
     },
     {
       office: "U.S. Senate", type: "Incumbent seeking re-election",
-      about: "A U.S. senator represents the whole state in Washington. Each state has two senators serving six-year terms. Senators vote on federal laws, confirm presidential appointments such as judges and Cabinet officials, ratify treaties, and oversee the federal government.",
-      desc: "One of South Carolina's two Senate seats is up in 2026. Incumbent Lindsey Graham faces a Republican primary; Democrats hold their own primary.",
+      about: "A U.S. senator represents the whole state in Washington for a six-year term: votes on federal laws, confirms presidential appointments such as judges and Cabinet officials, ratifies treaties, and conducts oversight of the federal government.",
+      desc: "One of South Carolina's two Senate seats is up in 2026. Incumbent Lindsey Graham faces a Republican primary; three Democrats compete in theirs.",
       candidates: [
-        { name: "Calvin Cowen", party: "rep" },
-        { name: "Paul Dans", party: "rep", wiki: "Paul Dans",
-          summary: "Former director of the Heritage Foundation's Project 2025. Not a current officeholder, so he has no legislative voting record." },
-        { name: "Thomas Keith Dismukes", party: "rep" },
         { name: "Lindsey Graham", party: "rep", incumbent: true, photo: "https://voteview.com/static/img/bios/029566.jpg", wiki: "Lindsey Graham",
-          summary: "Senior U.S. senator since 2003, after eight years in the U.S. House. A lawyer and Air Force veteran who chairs the Senate Budget Committee. Reported to be seeking a fifth Senate term, with a long roll-call record.",
+          summary: "Senior U.S. senator since 2003, after eight years in the U.S. House. A lawyer and Air Force veteran who chairs the Senate Budget Committee. He is seeking a fifth Senate term, with a long roll-call record.",
           record: { has: true, level: "U.S. Senate", loyaltyCareerPct: null,
                     loyaltyText: "Like most senators, he votes with his party the large majority of the time. See the loyalty table for exact figures by Congress.",
                     participation: { castPct: 93.6, missedPct: 6.4, period: "1995-2026" },
                     govtrackUrl: "https://www.govtrack.us/congress/members/lindsey_graham/300047",
-                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/29566/lindsey-o-graham#loyaltyTable" } },
-        { name: "Pat Herrmann", party: "rep" },
-        { name: "Mark Lynch", party: "rep" },
-        { name: "Darius L. Mitchell", party: "rep" },
+                    loyaltyLabel: "VoteView loyalty table", loyaltyUrl: "https://voteview.com/person/29566/lindsey-o-graham#loyaltyTable" },
+          sources: [{ label: "Campaign site", url: "https://www.lindseygraham.com" }] },
+        { name: "Calvin Cowen", party: "rep",
+          summary: "A town councilman in Duncan and a real estate investor.",
+          sources: [{ label: "Campaign site", url: "https://calvin4senate.com" }] },
+        { name: "Thomas Keith Dismukes", party: "rep",
+          summary: "A motivational speaker.",
+          sources: [{ label: "Campaign site", url: "https://www.thomasdismukes.com" }] },
+        { name: "Pat Herrmann", party: "rep",
+          summary: "A businessman and Republican activist who ran for the state House in 2024.",
+          sources: [{ label: "Campaign site", url: "https://votepat.us" }] },
+        { name: "Mark Lynch", party: "rep",
+          summary: "Owner of an appliance-repair company; ran for the state Senate in 2020.",
+          sources: [{ label: "Campaign site", url: "https://lynchforsenate.com" }] },
+        { name: "Darius L. Mitchell", party: "rep",
+          summary: "A first-time South Carolina candidate who previously ran for office in Massachusetts in 2018.",
+          sources: [{ label: "Campaign page", url: "https://www.instagram.com/hiphoprepublicans/" }] },
         { name: "Annie Andrews", party: "dem",
-          summary: "A pediatrician who was the Democratic nominee for the 1st congressional district in 2022, now running in the Democratic Senate primary." },
-        { name: "Brandon P. Brown", party: "dem" },
-        { name: "Kyle Freeman", party: "dem" },
-        { name: "Jason Elliot Brenkus", party: "ind", partyLabel: "Libertarian" },
-        { name: "Mark Hackett", party: "ind", partyLabel: "Constitution" },
-        { name: "Kasie Whitener", party: "ind", partyLabel: "Libertarian" }
+          summary: "A pediatrician and gun-safety advocate who was the Democratic nominee for the 1st congressional district in 2022.",
+          sources: [{ label: "Campaign site", url: "https://www.drannieandrews.com/" }] },
+        { name: "Brandon P. Brown", party: "dem",
+          summary: "A college administrator and past Democratic nominee for the U.S. House (2004 and 2018).",
+          sources: [{ label: "Campaign site", url: "https://brandonpbrown.com" }] },
+        { name: "Kyle Freeman", party: "dem",
+          summary: "A logistics professional running in the Democratic primary.",
+          sources: [{ label: "Campaign site", url: "https://www.kylefreemanforsenate.com" }] }
       ]
     },
     {
       office: "Attorney General", type: "Open seat",
-      about: "The attorney general is South Carolina's top lawyer and a chief law-enforcement officer: represents the state in court, issues legal opinions, prosecutes certain crimes, defends state laws, and handles consumer-protection matters. Four-year statewide office.",
-      desc: "Open seat: current Attorney General Alan Wilson is running for governor. Republicans hold a contested primary; the lone Democrat is unopposed.",
+      about: "The attorney general is South Carolina's top lawyer and a chief law-enforcement officer: represents the state in court, issues legal opinions, prosecutes certain crimes, defends state laws, and handles consumer protection. Four-year statewide office.",
+      desc: "Open seat: Attorney General Alan Wilson is running for governor. Three Republicans compete; the lone Democrat is unopposed.",
       candidates: [
         { name: "Stephen Goldfinch", party: "rep", wiki: "Stephen Goldfinch",
-          summary: "A South Carolina state senator (Georgetown area), so he has a state-legislature voting record.",
-          record: { has: true, level: "SC Senate", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Stephen_Goldfinch" } },
+          summary: "A state senator (Georgetown area) and former state representative and attorney, so he has a state-legislature voting record.",
+          record: { has: true, level: "SC Senate", loyaltyLabel: "Ballotpedia (state record)", loyaltyUrl: "https://ballotpedia.org/Stephen_Goldfinch" },
+          sources: [{ label: "Campaign site", url: "https://stephengoldfinch.com" }] },
         { name: "David M. Pascoe", party: "rep", wiki: "David Pascoe",
-          summary: "A longtime circuit solicitor (prosecutor) known for leading a State House corruption investigation." },
+          summary: "The 1st Circuit Solicitor (prosecutor), whose circuit includes Dorchester County; known for leading a State House corruption investigation.",
+          sources: [{ label: "Campaign site", url: "https://pascoeforscag.com" }] },
         { name: "David Stumbo", party: "rep",
-          summary: "A circuit solicitor (prosecutor) running in the Republican primary for attorney general." },
-        { name: "Richard Hricik", party: "dem" }
+          summary: "The 8th Circuit Solicitor (prosecutor).",
+          sources: [{ label: "Campaign page", url: "https://www.facebook.com/stumbodavid" }] },
+        { name: "Richard Hricik", party: "dem",
+          summary: "A Charleston attorney and former congressional aide; was a state Senate nominee in 2020.",
+          sources: [{ label: "Campaign bio", url: "https://charlestonlawyer.com/about-us/more-about-richard-hricik/" }] }
       ]
     },
     {
       office: "Secretary of State", type: "Incumbent seeking re-election",
       about: "The secretary of state handles official state records: registers businesses and charities, files public documents, oversees notaries, and administers certain registrations. Four-year statewide office.",
-      desc: "Incumbent Republican Mark Hammond is unopposed in his primary; Democrats hold a contested primary.",
+      desc: "Incumbent Republican Mark Hammond is unopposed in his primary; two Democrats compete in theirs.",
       candidates: [
         { name: "Mark Hammond", party: "rep", incumbent: true, wiki: "Mark Hammond (American politician)",
-          summary: "Secretary of state since 2003, unopposed in the Republican primary. This is an executive office without a legislative voting record." },
-        { name: "Jason Belton", party: "dem" },
-        { name: "Edwina Winter", party: "dem" }
+          summary: "Secretary of state since 2003, unopposed in the Republican primary. This is an executive office without a legislative voting record.",
+          sources: [{ label: "Campaign site", url: "http://hammond4sc.com" }] },
+        { name: "Jason Belton", party: "dem",
+          summary: "A labor organizer and community activist.",
+          sources: [{ label: "Campaign page", url: "https://www.facebook.com/jay.belton.90" }] },
+        { name: "Edwina Winter", party: "dem",
+          summary: "A teacher and community activist.",
+          sources: [{ label: "Campaign site", url: "https://www.winterforthewin.com" }] }
       ]
     },
     {
       office: "State Treasurer", type: "Incumbent seeking re-election",
       about: "The state treasurer is South Carolina's banker and chief investment officer: manages state funds and investments, pays the state's bills, and oversees unclaimed property and college-savings programs. Four-year statewide office.",
-      desc: "Incumbent Republican Curtis Loftis is unopposed in his primary; Democrats hold a contested primary.",
+      desc: "Incumbent Republican Curtis Loftis is unopposed in his primary; two Democrats compete in theirs.",
       candidates: [
         { name: "Curtis Loftis", party: "rep", incumbent: true, wiki: "Curtis Loftis",
-          summary: "State treasurer since 2011, unopposed in the Republican primary. This is an executive office without a legislative voting record." },
-        { name: "Vincent Coe", party: "dem" },
+          summary: "State treasurer since 2011, unopposed in the Republican primary. This is an executive office without a legislative voting record.",
+          sources: [{ label: "Campaign site", url: "https://curtisloftis.com" }] },
+        { name: "Vincent Coe", party: "dem",
+          summary: "A bank officer and former bank examiner.",
+          sources: [{ label: "Campaign site", url: "https://vincentforsc.com" }] },
         { name: "Trave Robertson Jr.", party: "dem",
-          summary: "Former chair of the South Carolina Democratic Party, running in the Democratic primary for treasurer." }
+          summary: "Former chair of the South Carolina Democratic Party.",
+          sources: [{ label: "Campaign page", url: "https://www.facebook.com/ntr2012" }] }
       ]
     },
     {
       office: "Comptroller General", type: "Open / contested",
       about: "The comptroller general is the state's chief accountant: keeps South Carolina's financial books, processes state payments, and reports on state finances. Four-year statewide office.",
-      desc: "Republican Mike Burkhold is unopposed in his primary; Democrats hold a contested primary.",
+      desc: "Republican Mike Burkhold is unopposed in his primary; two Democrats are on the Democratic ballot (one has withdrawn).",
       candidates: [
-        { name: "Mike Burkhold", party: "rep" },
-        { name: "Tiffany Boozer", party: "dem" },
-        { name: "Bruce K. Cole", party: "dem" }
+        { name: "Mike Burkhold", party: "rep",
+          summary: "A businessman; was the Republican nominee for a U.S. House seat in 1998.",
+          sources: [{ label: "Campaign site", url: "https://www.burkhold.net" }] },
+        { name: "Tiffany Boozer", party: "dem",
+          summary: "An accountant and quality-assurance manager in the Comptroller General's office.",
+          sources: [{ label: "Profile", url: "https://www.linkedin.com/in/tiffany-boozer-cpa-00a360176/" }] },
+        { name: "Bruce K. Cole", party: "dem",
+          summary: "Withdrew from the race; his name remains on the primary ballot." }
       ]
     },
     {
       office: "Superintendent of Education", type: "Incumbent seeking re-election",
       about: "The superintendent of education leads South Carolina's public school system: heads the state Department of Education, helps set standards and policy, oversees school funding, and reports on school performance. Four-year statewide office.",
-      desc: "Incumbent Republican Ellen Weaver is unopposed in her primary; Democrats hold a contested primary.",
+      desc: "Incumbent Republican Ellen Weaver is unopposed in her primary; two Democrats compete in theirs.",
       candidates: [
         { name: "Ellen Weaver", party: "rep", incumbent: true, wiki: "Ellen Weaver",
-          summary: "Incumbent superintendent of education, first elected in 2022, with a background in education policy and nonprofit leadership. Unopposed in the Republican primary." },
+          summary: "Incumbent superintendent of education, first elected in 2022, with a background in education policy and nonprofit leadership. Unopposed in the Republican primary.",
+          sources: [{ label: "Campaign site", url: "https://ellenforeducation.com" }] },
         { name: "Lisa Ellis", party: "dem", wiki: "Lisa Ellis (American politician)",
-          summary: "An educator who founded a large grassroots group of South Carolina public-school educators; was the Democratic nominee for this office in 2022." },
-        { name: "Sylvia Wright", party: "dem" },
-        { name: "Baba Amin Ojuok", party: "ind", partyLabel: "United Citizens" }
+          summary: "An educator who founded a large grassroots group of South Carolina public-school educators; was the Democratic nominee for this office in 2022.",
+          sources: [{ label: "Campaign site", url: "https://www.ellisforsc.com" }] },
+        { name: "Sylvia Wright", party: "dem",
+          summary: "An educator running in the Democratic primary.",
+          sources: [{ label: "Campaign site", url: "https://www.wright2026sc.com" }] }
       ]
     },
     {
       office: "Commissioner of Agriculture", type: "Open seat",
       about: "The commissioner of agriculture leads the state Department of Agriculture: supports farmers and agribusiness, runs food-safety and consumer-protection programs, and promotes South Carolina products. Four-year statewide office.",
-      desc: "Republicans hold a contested primary; the lone Democrat is unopposed.",
+      desc: "Incumbent Hugh Weathers is retiring. Four Republicans compete; the lone Democrat is unopposed.",
       candidates: [
-        { name: "Jeremy B. Cannon", party: "rep" },
-        { name: "Danny Ford", party: "rep" },
-        { name: "Cody Simpson", party: "rep" },
-        { name: "Fred West", party: "rep" },
-        { name: "DeShawn Blanding", party: "dem" },
-        { name: "Chris Nelums", party: "ind", partyLabel: "United Citizens" },
-        { name: "Michael Sullens", party: "ind", partyLabel: "Libertarian" }
+        { name: "Jeremy B. Cannon", party: "rep",
+          summary: "A farmer and market owner.",
+          sources: [{ label: "Campaign site", url: "https://www.cannon4ag.com" }] },
+        { name: "Danny Ford", party: "rep",
+          summary: "A farmer and businessman.",
+          sources: [{ label: "Campaign site", url: "https://www.dannyfordsc.com" }] },
+        { name: "Cody Simpson", party: "rep",
+          summary: "A farmer and former South Carolina state director of the USDA Farm Service Agency.",
+          sources: [{ label: "Campaign site", url: "https://www.codyforsc.com" }] },
+        { name: "Fred West", party: "rep",
+          summary: "An agribusinessman.",
+          sources: [{ label: "Campaign site", url: "https://gowest.sc/" }] },
+        { name: "DeShawn Blanding", party: "dem",
+          summary: "A farmer, agricultural co-op president, and former congressional aide.",
+          sources: [{ label: "Campaign site", url: "http://www.blandingforsc.com" }] }
       ]
     }
   ]
@@ -523,6 +559,16 @@ function candidateHtml(cand) {
     '</div>';
 }
 
+// Order within a party group: incumbents first, then alphabetical. Deliberately
+// NOT ranked by perceived viability, that would inject a non-neutral judgment.
+function orderCandidates(list) {
+  function byName(a, b) { return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0); }
+  var inc = [], rest = [];
+  for (var i = 0; i < list.length; i++) { (list[i].incumbent ? inc : rest).push(list[i]); }
+  inc.sort(byName); rest.sort(byName);
+  return inc.concat(rest);
+}
+
 function renderBallot() {
   var html = "";
   for (var i = 0; i < BALLOT_DATA.races.length; i++) {
@@ -532,13 +578,17 @@ function renderBallot() {
     if (race.candidates.length === 0) {
       cands = '<div class="meter-empty">Candidate lineup not yet loaded for this race. Add from scvotes.gov.</div>';
     } else {
-      var order = [["rep", "Republican primary"], ["dem", "Democratic primary"], ["ind", "Other parties (unopposed in primary)"]];
+      var order = [["rep", "Republican primary"], ["dem", "Democratic primary"], ["ind", "Other parties (not on the June primary ballot)"]];
       for (var g = 0; g < order.length; g++) {
-        var sub = "";
+        var grp = [];
         for (var j = 0; j < race.candidates.length; j++) {
-          if (race.candidates[j].party === order[g][0]) sub += candidateHtml(race.candidates[j]);
+          if (race.candidates[j].party === order[g][0]) grp.push(race.candidates[j]);
         }
-        if (sub) cands += '<div class="pgroup">' + order[g][1] + '</div>' + sub;
+        grp = orderCandidates(grp);
+        if (grp.length) {
+          cands += '<div class="pgroup">' + order[g][1] + '</div>';
+          for (var x = 0; x < grp.length; x++) cands += candidateHtml(grp[x]);
+        }
       }
     }
     var aboutBox = race.about ?
@@ -556,63 +606,24 @@ function renderBallot() {
   loadWikiImages();
 }
 
-function renderCompare() {
-  var rows = [];
-  for (var i = 0; i < BALLOT_DATA.races.length; i++) {
-    var pal = PALETTE[i % PALETTE.length];
-    for (var j = 0; j < BALLOT_DATA.races[i].candidates.length; j++) {
-      var c = BALLOT_DATA.races[i].candidates[j];
-      if (c.record && c.record.has) {
-        rows.push('<div class="race" style="border-left:6px solid ' + pal.accent + ';background:' + pal.bg + ';">' +
-          '<div class="meta" style="color:' + pal.head + ';">' + BALLOT_DATA.races[i].office + '</div>' +
-          candidateHtml(c) + '</div>');
-      }
-    }
-  }
-  document.getElementById("compareList").innerHTML = rows.length ? rows.join("") :
-    '<div class="meter-empty">No candidates with voting records loaded yet.</div>';
-  loadWikiImages();
-}
 
-// ----- LOCAL RACES + SAMPLE BALLOT ------------------------------------------
-var LOCAL_DATA = { districts: [] };
-
-function findDistrict(id) {
-  for (var i = 0; i < LOCAL_DATA.districts.length; i++) {
-    if (LOCAL_DATA.districts[i].id === id) return LOCAL_DATA.districts[i];
-  }
-  return null;
-}
-
-function populateDistricts() {
-  var sel = document.getElementById("districtSelect");
-  if (!sel) return;
-  for (var i = 0; i < LOCAL_DATA.districts.length; i++) {
-    var o = document.createElement("option");
-    o.value = LOCAL_DATA.districts[i].id;
-    o.textContent = LOCAL_DATA.districts[i].label;
-    sel.appendChild(o);
-  }
-  sel.addEventListener("change", renderSample);
-  var note = document.getElementById("localNote");
-  if (note) {
-    note.innerHTML = LOCAL_DATA.districts.length
-      ? 'Local races shown here are a starter set. Find your exact districts and full sample ballot at <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>.'
-      : 'No local race data loaded yet. Find your full sample ballot at <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>.';
-  }
-}
-
+// ----- SAMPLE BALLOT --------------------------------------------------------
 // Compact, ballot-style block: office title + candidates grouped by party.
 function sampleRaceHtml(office, type, candidates, accent) {
   var order = [["rep", "Republican"], ["dem", "Democrat"], ["ind", "Other"]];
   var body = "";
   for (var g = 0; g < order.length; g++) {
-    var names = "";
+    var grp = [];
     for (var k = 0; k < candidates.length; k++) {
       var c = candidates[k];
       var key = (c.party === "rep" || c.party === "dem") ? c.party : "ind";
-      if (key !== order[g][0]) continue;
-      names += '<div class="srow"><span>' + c.name + '</span>' + chip(c.party, c.partyLabel) + '</div>';
+      if (key === order[g][0]) grp.push(c);
+    }
+    grp = orderCandidates(grp);
+    var names = "";
+    for (var n = 0; n < grp.length; n++) {
+      var incmark = grp[n].incumbent ? ' <span style="color:#7fb98a;font-size:12px;">(Incumbent)</span>' : '';
+      names += '<div class="srow"><span>' + grp[n].name + incmark + '</span>' + chip(grp[n].party, grp[n].partyLabel) + '</div>';
     }
     if (names) body += '<div class="pgroup">' + order[g][1] + '</div>' + names;
   }
@@ -629,19 +640,7 @@ function sampleRaceHtml(office, type, candidates, accent) {
 }
 
 function renderSample() {
-  var sel = document.getElementById("districtSelect");
-  var did = sel ? sel.value : "";
   var html = "";
-  if (did) {
-    var d = findDistrict(did);
-    if (d) {
-      html += '<div class="pgroup" style="border:none;color:#d9a441;margin-top:4px;">Local races for ' + d.label + '</div>';
-      html += sampleRaceHtml(d.office, "Local race", d.candidates, "#d9a441");
-    }
-  } else {
-    html += '<div class="meter-empty" style="margin:6px 0 12px;">No district selected. Choose your district above to add local races. The statewide and federal races below are on every South Carolina ballot.</div>';
-  }
-  html += '<div class="pgroup" style="border:none;color:#9aa0ad;margin-top:14px;">Statewide and federal (every ballot)</div>';
   for (var i = 0; i < BALLOT_DATA.races.length; i++) {
     var pal = PALETTE[i % PALETTE.length];
     html += sampleRaceHtml(BALLOT_DATA.races[i].office, BALLOT_DATA.races[i].type, BALLOT_DATA.races[i].candidates, pal.accent);
@@ -659,11 +658,10 @@ function activateTab(el) {
   }
   el.classList.add("active");
   el.setAttribute("aria-selected", "true");
-  ["ballot", "compare", "sample", "about"].forEach(function (id) {
+  ["ballot", "sample", "about"].forEach(function (id) {
     document.getElementById(id).classList.add("hidden");
   });
   document.getElementById(name).classList.remove("hidden");
-  if (name === "compare") renderCompare();
   if (name === "sample") renderSample();
 }
 for (var t = 0; t < tabs.length; t++) {
@@ -716,14 +714,6 @@ async function init() {
     var ph = await fetch("photos.json", { cache: "no-store" });
     if (ph.ok) applyPhotos(await ph.json());
   } catch (e) { /* no photos file yet; Wikipedia + initials handle it */ }
-  try {
-    var lr = await fetch("local-races.json", { cache: "no-store" });
-    if (lr.ok) {
-      var data = await lr.json();
-      if (data && data.districts) LOCAL_DATA = data;
-    }
-  } catch (e) { /* no local file yet; sample ballot shows statewide + federal only */ }
-  populateDistricts();
   renderBallot();
 }
 
