@@ -1,8 +1,8 @@
 {
-  "_comment": "careerPct = approximate percent of votes with the member's own party. 'approx': true shows a tilde and an 'approx.' tag plus a Verify-at-VoteView link. Replace with exact figures read from each member's VoteView loyalty table and set approx:false. Historical loyalty does not change once set.",
+  "_comment": "careerPct = percent of votes with the member's own party (VoteView 'Party Loyalty' row). approx:false means read directly from VoteView. period describes which Congress(es) the figure covers. To switch to a whole-career average, read Party Loyalty for each Congress in the VoteView dropdown and average them.",
   "members": {
-    "Lindsey Graham": { "careerPct": 88, "approx": true, "period": "career, approx.", "source": "https://voteview.com/person/29566/lindsey-o-graham#loyaltyTable" },
-    "Nancy Mace": { "careerPct": 95, "approx": true, "period": "recent term, approx.", "source": "https://voteview.com/person/22132/nancy-mace#loyaltyTable" },
-    "Ralph W. Norman": { "careerPct": 97, "approx": true, "period": "career, approx.", "source": "https://voteview.com/person/21753/ralph-norman#loyaltyTable" }
+    "Nancy Mace": { "careerPct": 95, "approx": false, "period": "119th Congress (2025-2027)", "source": "https://voteview.com/person/22132/nancy-mace#loyaltyTable" },
+    "Lindsey Graham": { "careerPct": 99, "approx": false, "period": "119th Congress (2025-2027)", "source": "https://voteview.com/person/29566/lindsey-o-graham#loyaltyTable" },
+    "Ralph W. Norman": { "careerPct": 88, "approx": false, "period": "119th Congress (2025-2027)", "source": "https://voteview.com/person/21753/ralph-norman#loyaltyTable" }
   }
 }
