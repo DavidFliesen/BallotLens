@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BallotLens v022</title>
+<title>BallotLens v023</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%230f1115'/%3E%3Cg transform='translate(28,28) scale(0.78)'%3E%3Cline x1='138' y1='138' x2='214' y2='214' stroke='%23d9a441' stroke-width='26' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='72' fill='%23d9a441'/%3E%3Ccircle cx='100' cy='100' r='56' fill='%2311151d'/%3E%3Cline x1='70' y1='80' x2='132' y2='80' stroke='%23e7e3d8' stroke-width='9' stroke-linecap='round'/%3E%3Cline x1='70' y1='96' x2='116' y2='96' stroke='%239aa0ad' stroke-width='9' stroke-linecap='round'/%3E%3Cpolyline points='72,116 88,132 130,90' fill='none' stroke='%23e9b85a' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="canonical" href="https://davidfliesen.github.io/BallotLens">
 <meta name="description" content="See who is on your ballot, each candidate's party and background, and how legislators have actually voted versus their own party. Nonpartisan, no signup.">
@@ -33,7 +33,7 @@ body { padding-bottom: 60px; }
 a { color: #d9a441; }
 
 /* layout */
-.wrap { width: 95%; max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
 header { background: #12151c; padding: 12px 0; }
 .brand { font-family: "Fraunces", serif; font-weight: 900; font-size: 30px; letter-spacing: -0.5px; color: #f2ede0; }
 .brand b { color: #d9a441; }
@@ -88,6 +88,26 @@ header { background: #12151c; padding: 12px 0; }
 .cand-headtext { flex: 1; }
 .pgroup { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9aa0ad; margin: 16px 0 4px; padding-bottom: 4px; border-bottom: 1px solid #262b36; }
 .srcnote { font-size: 11px; color: #717784; margin: 2px 0 4px; }
+.tabs { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { white-space: nowrap; flex-shrink: 0; font-size: 12.5px; padding: 7px 13px; }
+.tab-sep { width: 1px; background: #2a303d; flex-shrink: 0; margin: 4px 3px; align-self: stretch; }
+.tab-count { display:inline-block; font-size:10px; background:rgba(255,255,255,0.12); border-radius:9px; padding:0 5px; margin-left:4px; }
+.cand-body { max-height:0; overflow:hidden; transition:max-height 0.28s ease-out; }
+.cand.open .cand-body { max-height:900px; }
+.cand-body-inner { padding:4px 14px 14px 58px; }
+.cand-head { cursor:pointer; user-select:none; }
+.cand-head:hover, .cand-head:focus { background:rgba(255,255,255,0.04); outline:none; }
+.chevron { margin-left:auto; font-size:16px; color:#5a6070; transition:transform 0.2s; flex-shrink:0; padding-left:8px; }
+.cand.open .chevron { transform:rotate(180deg); color:#d9a441; }
+.district-picker { padding:10px 0 6px; }
+.picker-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+.picker-row select { flex:1; min-width:220px; padding:10px 12px; background:#0d1016; border:1px solid #353c49; border-radius:8px; color:#e7e3d8; font-size:14px; font-family:inherit; }
+.btn-map { background:#1e2330; border:1px solid #353c49; color:#b9bdc7; padding:10px 16px; border-radius:8px; cursor:pointer; font-size:13px; white-space:nowrap; }
+.btn-map:hover { border-color:#d9a441; color:#d9a441; }
+#districtMapContainer { margin-top:10px; border-radius:10px; overflow:hidden; border:1px solid #2a303d; }
+#districtMapEl { height:360px; }
+
 .srow { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-top: 1px solid #20242e; font-size: 14px; color: #e7e3d8; }
 .srow:first-of-type { border-top: none; }
 .srow span { flex: 1; }
@@ -109,6 +129,8 @@ footer a { color: #9aa0ad; }
 h2.sec { font-family: "Fraunces", serif; font-size: 22px; color: #f2ede0; margin: 6px 0 10px; font-weight: 600; }
 p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
 </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -131,16 +153,10 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
 
 <div class="wrap">
 
-  <div class="tabs" id="tabs">
-    <div class="tab active" role="tab" tabindex="0" data-tab="ballot">My Ballot</div>
-    <div class="tab" role="tab" tabindex="0" data-tab="sample">Sample Ballot</div>
-    <div class="tab" role="tab" tabindex="0" data-tab="advisory">Advisory Questions</div>
-    <div class="tab" role="tab" tabindex="0" data-tab="about">About the Data</div>
-  </div>
+  <div class="tabs" id="tabs"></div>
 
   <!-- BALLOT TAB -->
-  <div id="ballot">
-    <div id="races"></div>
+    <div id="race-pane" class="hidden"></div>
   </div>
 
   <!-- COMPARE TAB -->
@@ -220,7 +236,7 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <a href="https://www.govtrack.us" target="_blank" rel="noopener">GovTrack</a>,
       <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
     </div>
-    <div style="margin-top:8px;">BallotLens v022 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
+    <div style="margin-top:8px;">BallotLens v023 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
   </footer>
 
 </div>
@@ -677,13 +693,13 @@ function candidateHtml(cand) {
   } else {
     photo = monogramHtml(cand.name, cand.wiki);
   }
-  return '<div class="cand">' +
-    '<div class="cand-head">' + photo +
+  var party = cand.party || "ind";
+  return '<div class="cand" data-party="' + party + '">' +
+    '<div class="cand-head" role="button" tabindex="0" aria-expanded="false">' + photo +
       '<div class="cand-headtext"><div class="top"><span class="name">' + cand.name + '</span>' + chip(cand.party) + inc + '</div></div>' +
+      '<span class="chevron">&#9660;</span>' +
     '</div>' +
-    summary +
-    factsList +
-    meter(cand) +
+    '<div class="cand-body"><div class="cand-body-inner">' + summary + factsList + meter(cand) + '</div></div>' +
     '</div>';
 }
 
@@ -777,30 +793,190 @@ function renderSample() {
 }
 
 // ----- TABS -----------------------------------------------------------------
-var tabs = document.querySelectorAll(".tab");
-function activateTab(el) {
-  var name = el.getAttribute("data-tab");
-  for (var k = 0; k < tabs.length; k++) {
-    tabs[k].classList.remove("active");
-    tabs[k].setAttribute("aria-selected", "false");
+// ── Dynamic tab system (one per office + utilities) ─────────────────────────
+var OFFICE_SHORT = {
+  "Governor":"Governor","U.S. Senate":"U.S. Senate","Attorney General":"Atty. Gen.",
+  "Secretary of State":"Sec. State","State Treasurer":"Treasurer",
+  "Comptroller General":"Comptroller","Superintendent of Education":"Supt. Ed.",
+  "Commissioner of Agriculture":"Agriculture"
+};
+
+function makeTabEl(tabId, label, cnt) {
+  var el = document.createElement("div");
+  el.className = "tab"; el.setAttribute("role","tab");
+  el.setAttribute("tabindex","0"); el.setAttribute("data-tab",tabId);
+  el.setAttribute("aria-selected","false");
+  el.innerHTML = label + (cnt > 0 ? '<span class="tab-count">' + cnt + '</span>' : "");
+  el.addEventListener("click", function(){ doTab(this); });
+  el.addEventListener("keydown", function(e){
+    if(e.key==="Enter"||e.key===" "){e.preventDefault();doTab(this);}
+  });
+  return el;
+}
+
+function buildTabs() {
+  var bar = document.getElementById("tabs");
+  bar.innerHTML = "";
+  var houseDone = false, houseCount = 0;
+  for(var i=0;i<BALLOT_DATA.races.length;i++){
+    if(BALLOT_DATA.races[i].office.indexOf("U.S. House — District")===0)
+      houseCount += BALLOT_DATA.races[i].candidates.length;
   }
-  el.classList.add("active");
-  el.setAttribute("aria-selected", "true");
-  ["ballot", "sample", "advisory", "about"].forEach(function (id) {
-    document.getElementById(id).classList.add("hidden");
-  });
-  document.getElementById(name).classList.remove("hidden");
-  if (name === "sample") renderSample();
+  for(var i=0;i<BALLOT_DATA.races.length;i++){
+    var race = BALLOT_DATA.races[i];
+    if(race.office.indexOf("U.S. House — District")===0){
+      if(!houseDone){ bar.appendChild(makeTabEl("house","U.S. House",houseCount)); houseDone=true; }
+    } else {
+      var lbl = OFFICE_SHORT[race.office] || race.office;
+      bar.appendChild(makeTabEl("race-"+i, lbl, race.candidates.length));
+    }
+  }
+  var sep=document.createElement("div"); sep.className="tab-sep"; bar.appendChild(sep);
+  bar.appendChild(makeTabEl("sample","Sample Ballot",0));
+  bar.appendChild(makeTabEl("advisory","Advisory",0));
+  bar.appendChild(makeTabEl("about","About",0));
+  doTab(bar.querySelector(".tab"));
 }
-for (var t = 0; t < tabs.length; t++) {
-  tabs[t].addEventListener("click", function () { activateTab(this); });
-  tabs[t].addEventListener("keydown", function (e) {
-    if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") { e.preventDefault(); activateTab(this); }
-  });
+
+function doTab(el) {
+  var allT = document.querySelectorAll(".tab");
+  for(var k=0;k<allT.length;k++){allT[k].classList.remove("active");allT[k].setAttribute("aria-selected","false");}
+  el.classList.add("active"); el.setAttribute("aria-selected","true");
+  var panes=["race-pane","sample","advisory","about"];
+  for(var p=0;p<panes.length;p++){var e2=document.getElementById(panes[p]);if(e2)e2.classList.add("hidden");}
+  var name = el.getAttribute("data-tab");
+  if(name==="sample"){document.getElementById("sample").classList.remove("hidden");renderSample();}
+  else if(name==="advisory"){document.getElementById("advisory").classList.remove("hidden");}
+  else if(name==="about"){document.getElementById("about").classList.remove("hidden");}
+  else if(name==="house"){document.getElementById("race-pane").classList.remove("hidden");renderHouseTab();}
+  else if(name.indexOf("race-")===0){
+    var idx=parseInt(name.split("-")[1],10);
+    document.getElementById("race-pane").classList.remove("hidden");
+    renderRace(idx);
+  }
 }
+
+// accordion
+document.addEventListener("click",function(e){
+  var h=e.target.closest?e.target.closest(".cand-head"):null;
+  if(h){var c=h.closest(".cand");if(c){c.classList.toggle("open");h.setAttribute("aria-expanded",c.classList.contains("open"));}}
+});
+document.addEventListener("keydown",function(e){
+  if(e.key==="Enter"||e.key===" "){
+    var h=e.target.closest?e.target.closest(".cand-head"):null;
+    if(h){e.preventDefault();var c=h.closest(".cand");if(c){c.classList.toggle("open");}}
+  }
+});
 
 // Merge verified whole-career party-line loyalty from loyalty.json (stored in
 // the repo). Historical loyalty does not change, so this is filled once.
+
+// ── Race renderers ────────────────────────────────────────────────────────────
+function buildRaceHtml(race) {
+  var html = '<div class="about-office"><b>What this office does.</b> ' + race.about + '</div>' +
+    '<div class="desc" style="margin:6px 0 8px;">' + race.desc + '</div>' +
+    '<div class="srcnote">Candidates from the June 9, 2026 primary filing. Verify at <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>.</div>';
+  var order=[["rep","Republican primary"],["dem","Democratic primary"],["ind","Other"]];
+  for(var g=0;g<order.length;g++){
+    var grp=[];
+    for(var j=0;j<race.candidates.length;j++){
+      if(race.candidates[j].party===order[g][0]) grp.push(race.candidates[j]);
+    }
+    grp=orderCandidates(grp);
+    if(grp.length){
+      html+='<div class="pgroup">'+order[g][1]+'</div>';
+      for(var x=0;x<grp.length;x++) html+=candidateHtml(grp[x]);
+    }
+  }
+  return html;
+}
+
+function renderRace(idx) {
+  var race=BALLOT_DATA.races[idx], pal=PALETTE[idx%PALETTE.length];
+  var pane=document.getElementById("race-pane");
+  pane.innerHTML='<div class="race" style="border-left:6px solid '+pal.accent+';background:'+pal.bg+';">' +
+    '<h2 class="sec" style="color:'+pal.head+';">'+race.office+'</h2>' +
+    '<div class="meta">'+race.type+'</div>'+buildRaceHtml(race)+'</div>';
+  loadWikiImages();
+}
+
+// ── House district picker ─────────────────────────────────────────────────────
+var _lmap=null;
+var DISTRICT_NAMES={
+  1:"District 1 — Charleston coast, Beaufort, Dorchester",
+  2:"District 2 — Columbia suburbs, Aiken, Lexington",
+  3:"District 3 — Upstate: Anderson, Greenwood, Laurens",
+  4:"District 4 — Greenville-Spartanburg metro",
+  5:"District 5 — Rock Hill, York County",
+  6:"District 6 — Midlands, Orangeburg, Florence",
+  7:"District 7 — Myrtle Beach, Grand Strand, Pee Dee"
+};
+
+function pickDistrict(num) {
+  num=parseInt(num,10);
+  if(!num) return;
+  localStorage.setItem("ballotlens_house_district",num);
+  renderHouseTab(num);
+}
+
+function renderHouseTab(districtNum) {
+  var saved=districtNum||parseInt(localStorage.getItem("ballotlens_house_district")||"0",10);
+  var opts='<option value="">Choose your district…</option>';
+  for(var d=1;d<=7;d++) opts+='<option value="'+d+'"'+(saved===d?' selected':'')+'>'+DISTRICT_NAMES[d]+'</option>';
+  var intro='<div class="about-office" style="border-left-color:#d9a441;margin-bottom:12px;">' +
+    '<b>U.S. House of Representatives</b> &mdash; Select your district to see the candidates for your seat. Your choice is saved in this browser.</div>';
+  var picker='<div class="district-picker"><div class="picker-row">' +
+    '<select id="houseDistrictSelect" onchange="pickDistrict(this.value)">'+opts+'</select>' +
+    '<button class="btn-map" onclick="openMap()">&#128205; Pick on map</button></div>' +
+    '<div id="districtMapContainer" class="hidden"><div id="districtMapEl"></div></div></div>';
+  var raceHtml='';
+  if(saved){
+    var target="U.S. House — District "+saved;
+    for(var i=0;i<BALLOT_DATA.races.length;i++){
+      if(BALLOT_DATA.races[i].office===target){
+        var pal=PALETTE[i%PALETTE.length];
+        raceHtml='<div class="race" style="border-left:6px solid '+pal.accent+';background:'+pal.bg+';">' +
+          '<h2 class="sec" style="color:'+pal.head+';">'+BALLOT_DATA.races[i].office+'</h2>' +
+          '<div class="meta">'+BALLOT_DATA.races[i].type+'</div>'+buildRaceHtml(BALLOT_DATA.races[i])+'</div>';
+        break;
+      }
+    }
+  }
+  document.getElementById("race-pane").innerHTML=intro+picker+(raceHtml||
+    '<div class="meter-empty" style="padding:14px;">Pick your district above to see your candidates.</div>');
+  loadWikiImages();
+}
+
+function openMap() {
+  var c=document.getElementById("districtMapContainer");
+  c.classList.toggle("hidden");
+  if(c.classList.contains("hidden")||_lmap) { if(_lmap) _lmap.invalidateSize(); return; }
+  _lmap=L.map("districtMapEl").setView([33.8,-80.9],7);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {attribution:"© OpenStreetMap contributors",maxZoom:10}).addTo(_lmap);
+  var cols=["#e67e22","#27ae60","#2980b9","#8e44ad","#c0392b","#f39c12","#16a085"];
+  for(var d=1;d<=7;d++){
+    (function(dist,col){
+      fetch("https://raw.githubusercontent.com/unitedstates/districts/gh-pages/cds/2022/SC-"+dist+"/shape.geojson")
+        .then(function(r){return r.json();})
+        .then(function(geo){
+          L.geoJSON(geo,{
+            style:{fillColor:col,fillOpacity:0.45,color:"#fff",weight:2},
+            onEachFeature:function(feat,layer){
+              layer.bindTooltip("<b>District "+dist+"</b>",{permanent:false,sticky:true});
+              layer.on("click",function(){
+                pickDistrict(dist);
+                document.getElementById("districtMapContainer").classList.add("hidden");
+              });
+              layer.on("mouseover",function(e){e.target.setStyle({fillOpacity:0.7});});
+              layer.on("mouseout",function(e){e.target.setStyle({fillOpacity:0.45});});
+            }
+          }).addTo(_lmap);
+        }).catch(function(){});
+    })(d,cols[d-1]);
+  }
+}
+
 function applyLoyalty(data) {
   var members = (data && data.members) ? data.members : {};
   for (var i = 0; i < BALLOT_DATA.races.length; i++) {
@@ -842,7 +1018,7 @@ async function init() {
     var ph = await fetch("photos.json", { cache: "no-store" });
     if (ph.ok) applyPhotos(await ph.json());
   } catch (e) { /* no photos file yet; Wikipedia + initials handle it */ }
-  renderBallot();
+  buildTabs();
 }
 
 init();
