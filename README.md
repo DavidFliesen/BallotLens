@@ -14,7 +14,7 @@ BallotLens is a nonpartisan voter-education tool for South Carolina’s 2026 ele
 
 It runs as a single self-contained HTML page plus two small companion data files, hosted free on GitHub Pages.
 
-## Current build: v026
+## Current build: v027
 
 **84 candidates** across 15 races — all eight statewide constitutional offices, U.S. Senate, and all seven U.S. House congressional districts. Republican primary and Democratic primary only. Minor-party and independent candidates are nominated by convention or petition for the November general election and do not appear on the June 9 primary ballot.
 
@@ -38,7 +38,7 @@ Three utility tabs follow a visual separator: **Sample Ballot**, **Advisory**, a
 
 ### U.S. House district picker
 
-The House tab shows a dropdown of all seven SC congressional districts with geographic descriptions. Selecting a district loads that district’s candidates. A **Pick on map** button opens an interactive Leaflet map of the seven district boundaries — click your area to select. Your district choice is saved in `localStorage` so you do not have to re-select on return visits.
+The House tab shows a dropdown of all seven SC congressional districts with geographic descriptions. Selecting a district loads that district’s candidates. Your choice is saved in `localStorage` so you do not have to re-select on return visits.
 
 ### Candidate cards
 
@@ -83,7 +83,6 @@ Both files must be in the same directory as `index.html`. The app fetches them a
 |Roll-call attendance and member profiles           |GovTrack (govtrack.us)                                      |
 |State legislature voting records                   |Ballotpedia (ballotpedia.org)                               |
 |Candidate photos                                   |Verified URLs in photos.json, then Wikipedia pageimage API  |
-|Congressional district boundaries (map)            |unitedstates/districts on GitHub (GeoJSON, 2022)            |
 
 ## Notable data flags
 
@@ -96,7 +95,6 @@ Both files must be in the same directory as `index.html`. The app fetches them a
 
 - Single-file architecture: all HTML, CSS, and JavaScript in `index.html` (ES5, no build step, no frameworks).
 - Two optional companion JSON files: `loyalty.json` and `photos.json`.
-- Interactive district map uses Leaflet 1.9.4 (loaded from cdnjs) and GeoJSON boundaries fetched from GitHub on demand (lazy-loaded only when the user opens the map).
 - No `type="module"` on the script tag — functions are in global scope to support inline event handlers in dynamically-generated HTML.
 - GitHub Pages compatible: zero backend, zero API keys, no cookies.
 - Edit safely in GitHub’s web editor: the app uses ES5 JavaScript only (no arrow functions, no template literals, no CSS custom properties). Hardcoded hex colors throughout to avoid em-dash corruption.
@@ -117,7 +115,7 @@ Push `index.html`, `loyalty.json`, and `photos.json` to the root of a GitHub Pag
 
 |File                                  |Purpose                                                            |
 |--------------------------------------|-------------------------------------------------------------------|
-|`index.html`                          |The app — current build v026                                       |
+|`index.html`                          |The app — current build v027                                       |
 |`loyalty.json`                        |Party-line loyalty figures (editable)                              |
 |`photos.json`                         |Candidate headshot URL overrides (editable)                        |
 |`voteview-loyalty-scraper.js`         |Browser console helper for extracting loyalty figures from VoteView|
