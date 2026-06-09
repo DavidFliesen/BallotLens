@@ -124,3 +124,23 @@ Push `index.html`, `loyalty.json`, and `photos.json` to the root of a GitHub Pag
 |`ballotlens-icon-square-v001.png`     |Square icon for favicons                                           |
 |`ballotlens-social-v001.png`          |1200x630 Open Graph social card                                    |
 |`ballotlens-apple-touch-icon-v001.png`|iOS home-screen icon                                               |
+
+## License
+
+MIT License
+
+Copyright (c) 2026 David Fliesen / Cibola Studios
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Developer
+
+**David Fliesen** is a Hybrid Generative AI Multimedia Developer and sole proprietor of Cibola Studios, based in Summerville, SC. He brings 20+ years of multimedia production experience and a U.S. Navy Combat Camera background to applied AI development, with a specialization in Generative AI from Purdue University / Simplilearn.
+
+- Portfolio: [davidfliesen.github.io](https://davidfliesen.github.io)
+- GitHub: [github.com/DavidFliesen](https://github.com/DavidFliesen)
+- LinkedIn: [linkedin.com/in/fliesen](https://linkedin.com/in/fliesen/)
