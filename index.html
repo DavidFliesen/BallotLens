@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BallotLens v025</title>
+<title>BallotLens v026</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='52' fill='%230f1115'/%3E%3Cg transform='translate(28,28) scale(0.78)'%3E%3Cline x1='138' y1='138' x2='214' y2='214' stroke='%23d9a441' stroke-width='26' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='72' fill='%23d9a441'/%3E%3Ccircle cx='100' cy='100' r='56' fill='%2311151d'/%3E%3Cline x1='70' y1='80' x2='132' y2='80' stroke='%23e7e3d8' stroke-width='9' stroke-linecap='round'/%3E%3Cline x1='70' y1='96' x2='116' y2='96' stroke='%239aa0ad' stroke-width='9' stroke-linecap='round'/%3E%3Cpolyline points='72,116 88,132 130,90' fill='none' stroke='%23e9b85a' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="canonical" href="https://davidfliesen.github.io/BallotLens">
 <meta name="description" content="See who is on your ballot, each candidate's party and background, and how legislators have actually voted versus their own party. Nonpartisan, no signup.">
@@ -44,13 +44,12 @@ header { background: #12151c; padding: 12px 0; }
 .notice b { color: #f2ede0; }
 
 /* tabs */
-.tabs { display: flex; gap: 6px; margin: 18px 0 10px; flex-wrap: wrap; }
-.tab { background: #181b22; border: 1px solid #2a2f3a; color: #c4c8d0; padding: 9px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+.tabs { display: flex; gap: 4px; margin: 18px 0 10px; flex-wrap: wrap; }
+.tab { background: #181b22; border: 1px solid #2a2f3a; color: #c4c8d0; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; font-weight: 500; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 .tab.active { background: #d9a441; color: #161616; border-color: #d9a441; }
 
 /* race cards */
 .race { background: #161922; border: 1px solid #262b36; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
-.race h3 { font-family: "Fraunces", serif; font-size: 20px; color: #f2ede0; font-weight: 600; }
 .race .meta { font-size: 12px; color: #8c93a1; margin: 4px 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 .race .desc { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
 
@@ -82,21 +81,19 @@ header { background: #12151c; padding: 12px 0; }
 .meter-empty { font-size: 13px; color: #9aa0ad; }
 .meter-sub { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; color: #b9bdc7; text-transform: uppercase; margin-bottom: 6px; }
 .meter-foot { font-size: 11px; color: #6b7280; margin-top: 12px; padding-top: 8px; border-top: 1px solid #1e2330; }
-.cand-head { display: flex; align-items: center; gap: 12px; }
+.cand-head { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
 .cand-photo { width: 66px; height: 66px; border-radius: 10px; object-fit: cover; object-position: top; border: 1px solid #2a2f3a; background: #11141b; flex: none; }
 .monogram { display: flex; align-items: center; justify-content: center; font-family: "Fraunces", serif; font-weight: 900; font-size: 24px; color: #e7e3d8; background: #2a2118; letter-spacing: 0.5px; }
 .cand-headtext { flex: 1; }
 .pgroup { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9aa0ad; margin: 16px 0 4px; padding-bottom: 4px; border-bottom: 1px solid #262b36; }
 .srcnote { font-size: 11px; color: #717784; margin: 2px 0 4px; }
-.tabs { flex-wrap: wrap; gap: 4px !important; }
-.tabs::-webkit-scrollbar { display: none; }
-.tab { white-space: nowrap; flex-shrink: 0; font-size: 12.5px; padding: 7px 13px; }
 .tab-sep { width: 1px; background: #2a303d; flex-shrink: 0; margin: 4px 3px; align-self: stretch; }
 .tab-count { display:inline-block; font-size:10px; background:rgba(255,255,255,0.12); border-radius:9px; padding:0 5px; margin-left:4px; }
+.cand[data-party="rep"] > .cand-head { border-left: 3px solid #6e3340; padding-left: 11px; }
+.cand[data-party="dem"] > .cand-head { border-left: 3px solid #34507e; padding-left: 11px; }
 .cand-body { max-height:0; overflow:hidden; transition:max-height 0.28s ease-out; }
 .cand.open .cand-body { max-height:900px; }
 .cand-body-inner { padding:4px 14px 14px 58px; }
-.cand-head { cursor:pointer; user-select:none; }
 .cand-head:hover, .cand-head:focus { background:rgba(255,255,255,0.04); outline:none; }
 .chevron { margin-left:auto; font-size:16px; color:#5a6070; transition:transform 0.2s; flex-shrink:0; padding-left:8px; }
 .cand.open .chevron { transform:rotate(180deg); color:#d9a441; }
@@ -112,11 +109,6 @@ header { background: #12151c; padding: 12px 0; }
 .srow:first-of-type { border-top: none; }
 .srow span { flex: 1; }
 
-/* buttons */
-.btn { background: #232833; border: 1px solid #353c49; color: #e7e3d8; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 10px; font-family: inherit; }
-.btn:hover { border-color: #d9a441; }
-.btn.gold { background: #d9a441; color: #161616; border-color: #d9a441; font-weight: 700; }
-.btn:disabled { opacity: 0.5; cursor: default; }
 
 /* candidate summary + office box */
 .cand-summary { font-size: 14px; color: #d3d7df; margin: 10px 0 2px; }
@@ -235,12 +227,12 @@ p.lead { font-size: 14px; color: #b9bdc7; margin-bottom: 12px; }
       <a href="https://www.govtrack.us" target="_blank" rel="noopener">GovTrack</a>,
       <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>.
     </div>
-    <div style="margin-top:8px;">BallotLens v025 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
+    <div style="margin-top:8px;">BallotLens v026 &middot; Live at <a href="https://davidfliesen.github.io/BallotLens" target="_blank" rel="noopener">davidfliesen.github.io/BallotLens</a></div>
   </footer>
 
 </div>
 
-<script type="module">
+<script>
 // ----- DATA LAYER -----------------------------------------------------------
 // Verifiable starter set for the SC 2026 cycle (statewide + U.S. Senate), from
 // the official June 9, 2026 primary filing. Loyalty figures, headshots, and
@@ -693,7 +685,7 @@ function candidateHtml(cand) {
     photo = monogramHtml(cand.name, cand.wiki);
   }
   var party = cand.party || "ind";
-  return '<div class="cand" data-party="' + party + '">' +
+  return '<div class="cand open" data-party="' + party + '">' +
     '<div class="cand-head" role="button" tabindex="0" aria-expanded="false">' + photo +
       '<div class="cand-headtext"><div class="top"><span class="name">' + cand.name + '</span>' + chip(cand.party) + inc + '</div></div>' +
       '<span class="chevron">&#9660;</span>' +
@@ -710,43 +702,6 @@ function orderCandidates(list) {
   for (var i = 0; i < list.length; i++) { (list[i].incumbent ? inc : rest).push(list[i]); }
   inc.sort(byName); rest.sort(byName);
   return inc.concat(rest);
-}
-
-function renderBallot() {
-  var html = "";
-  for (var i = 0; i < BALLOT_DATA.races.length; i++) {
-    var race = BALLOT_DATA.races[i];
-    var pal = PALETTE[i % PALETTE.length];
-    var cands = "";
-    if (race.candidates.length === 0) {
-      cands = '<div class="meter-empty">Candidate lineup not yet loaded for this race. Add from scvotes.gov.</div>';
-    } else {
-      var order = [["rep", "Republican primary"], ["dem", "Democratic primary"], ["ind", "Other parties (not on the June primary ballot)"]];
-      for (var g = 0; g < order.length; g++) {
-        var grp = [];
-        for (var j = 0; j < race.candidates.length; j++) {
-          if (race.candidates[j].party === order[g][0]) grp.push(race.candidates[j]);
-        }
-        grp = orderCandidates(grp);
-        if (grp.length) {
-          cands += '<div class="pgroup">' + order[g][1] + '</div>';
-          for (var x = 0; x < grp.length; x++) cands += candidateHtml(grp[x]);
-        }
-      }
-    }
-    var aboutBox = race.about ?
-      '<div class="about-office" style="border-color:' + pal.accent + ';"><b style="color:' + pal.head + ';">What this office does.</b> ' + race.about + '</div>' : '';
-    html += '<div class="race" style="border-left:6px solid ' + pal.accent + ';background:' + pal.bg + ';">' +
-      '<h3 style="color:' + pal.head + ';">' + race.office + '</h3>' +
-      '<div class="meta">' + race.type + '</div>' +
-      aboutBox +
-      '<div class="desc">' + race.desc + '</div>' +
-      '<div class="srcnote">Candidate list from the official June 9, 2026 primary filing. Confirm your sample ballot at <a href="https://scvotes.gov" target="_blank" rel="noopener">scvotes.gov</a>.</div>' +
-      cands +
-      '</div>';
-  }
-  document.getElementById("races").innerHTML = html;
-  loadWikiImages();
 }
 
 
@@ -816,19 +771,35 @@ function makeTabEl(tabId, label, cnt) {
 function buildTabs() {
   var bar = document.getElementById("tabs");
   bar.innerHTML = "";
-  var houseDone = false, houseCount = 0;
+  // Calculate house candidate count
+  var houseCount = 0;
   for(var i=0;i<BALLOT_DATA.races.length;i++){
     if(BALLOT_DATA.races[i].office.indexOf("U.S. House")===0)
       houseCount += BALLOT_DATA.races[i].candidates.length;
   }
-  for(var i=0;i<BALLOT_DATA.races.length;i++){
-    var race = BALLOT_DATA.races[i];
-    if(race.office.indexOf("U.S. House")===0){
-      if(!houseDone){ bar.appendChild(makeTabEl("house","House",houseCount)); houseDone=true; }
-    } else {
-      var lbl = OFFICE_SHORT[race.office] || race.office;
-      bar.appendChild(makeTabEl("race-"+i, lbl, race.candidates.length));
+  // Enforce explicit first-row order: Governor, Senate, House, then rest
+  // regardless of where they sit in the data array
+  var added = {};
+  function addRaceTab(officeName, label) {
+    for(var k=0;k<BALLOT_DATA.races.length;k++){
+      if(BALLOT_DATA.races[k].office===officeName && !added[k]){
+        added[k]=true;
+        bar.appendChild(makeTabEl("race-"+k, label||OFFICE_SHORT[officeName]||officeName, BALLOT_DATA.races[k].candidates.length));
+        return;
+      }
     }
+  }
+  addRaceTab("Governor","Governor");
+  addRaceTab("U.S. Senate","Senate");
+  bar.appendChild(makeTabEl("house","House",houseCount));
+  added["house"]=true;
+  // Remaining non-House races in array order
+  for(var i=0;i<BALLOT_DATA.races.length;i++){
+    if(added[i]) continue;
+    if(BALLOT_DATA.races[i].office.indexOf("U.S. House")===0) continue;
+    var lbl = OFFICE_SHORT[BALLOT_DATA.races[i].office] || BALLOT_DATA.races[i].office;
+    bar.appendChild(makeTabEl("race-"+i, lbl, BALLOT_DATA.races[i].candidates.length));
+    added[i]=true;
   }
   var sep=document.createElement("div"); sep.className="tab-sep"; bar.appendChild(sep);
   bar.appendChild(makeTabEl("sample","Sample Ballot",0));
@@ -947,6 +918,12 @@ function renderHouseTab(districtNum) {
 }
 
 function openMap() {
+  if(typeof L==="undefined"){
+    var mc=document.getElementById("districtMapContainer");
+    mc.classList.remove("hidden");
+    document.getElementById("districtMapEl").innerHTML="<p style='padding:16px;color:#ef8b9a;'>Map requires an internet connection. Use the dropdown above to select your district.</p>";
+    return;
+  }
   var c=document.getElementById("districtMapContainer");
   c.classList.toggle("hidden");
   if(c.classList.contains("hidden")||_lmap) { if(_lmap) _lmap.invalidateSize(); return; }
